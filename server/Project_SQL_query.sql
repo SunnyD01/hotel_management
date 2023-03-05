@@ -8,12 +8,12 @@ CREATE TABLE hotel_chain(
 
 CREATE TABLE hotel(
 	hotel_id SERIAL PRIMARY KEY,
-	manager VARCHAR(100),
+	manager_id INT,
 	employees INT,
 	rating INT,
 	phone_number VARCHAR(255),
 	email_address VARCHAR(255),
-	Address VARCHAR(255),
+	address VARCHAR(255),
 	number_of_rooms INT,
 	chain_id INT,
 	CONSTRAINT fk_chain_id
@@ -23,8 +23,8 @@ CREATE TABLE hotel(
 
 CREATE TABLE employee(
 	ssn INT PRIMARY KEY,
-	"role" VARCHAR(50),
-	Address VARCHAR(255),
+	employee_type VARCHAR(50),
+	address VARCHAR(255),
 	fname VARCHAR(50),
 	lname VARCHAR(50),
 	hotel_id INT,
@@ -37,7 +37,7 @@ CREATE TABLE customer(
 	ssn INT PRIMARY KEY,
 	fname VARCHAR(50),
 	lname VARCHAR(50),
-	Address VARCHAR(255),
+	address VARCHAR(255),
 	date_of_registration VARCHAR(11),
 	booking_history TEXT
 );
