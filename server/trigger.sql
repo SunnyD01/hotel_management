@@ -82,30 +82,17 @@ CREATE TRIGGER delete_room_trigger
   FOR EACH ROW
   EXECUTE FUNCTION delete_room();
   
-CREATE OR REPLACE FUNCTION employee_insert() RETURNS TRIGGER AS $$
+
+CREATE OR REPLACE FUNCTION employee_id_check() RETURNS TRIGGER AS $$
 BEGIN
-	IF NOT EXISTS (SELECT 1 FROM hotel WHERE hotel_id = NEW.hotel_id) THEN
-		RAISE EXCEPTION 'The hotel_id does not exist in the hotel table';
+	IF NOT EXISTS (SELECT 1 FROM employee WHERE ssn = NEW.ssn) THEN
+		RAISE EXCEPTION 'the empolyee is invalid';
 	END IF;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER employee_insert
+CREATE TRIGGER employee_id_check
 BEFORE INSERT ON employee
 FOR EACH ROW
-EXECUTE FUNCTION employee_insert();
-
-CREATE OR REPLACE FUNCTION employee_update() RETURNS TRIGGER AS $$
-BEGIN
-	IF NOT EXISTS (SELECT 1 FROM hotel WHERE hotel_id = NEW.hotel_id) THEN
-		RAISE EXCEPTION 'The hotel_id does not exist in the hotel table';
-	END IF;
-	RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER employee_update
-BEFORE UPDATE ON employee
-FOR EACH ROW
-EXECUTE FUNCTION employee_update();
+EXECUTE FUNCTION employee_id_check();
