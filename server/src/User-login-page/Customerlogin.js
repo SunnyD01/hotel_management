@@ -1,5 +1,6 @@
 import Navbar from "../Navbar";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const welcometitle = 'Welcome back Dear Customer. Please login your account with your SSN and password'
 
@@ -8,9 +9,12 @@ const Customerlogin = () => {
     const [SSN, setSSN] = useState('');
     const [password, setPass] = useState('');
     
+    let navigate = useNavigate();
     const handleLogin = (e) => {
         e.preventDefault();
         console.log(SSN)
+        navigate("/customerpage")
+
     }
     return (
         <div>

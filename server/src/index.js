@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Customerlogin from './User-login-page/Customerlogin';
 import Employeelogin from './User-login-page/Employeelogin';
+import CustomerPage from './Customer_page/CustomerPage';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/employeelogin",
     element: <Employeelogin/>,
+  },
+  {
+    path: "/customerpage",
+    element: <CustomerPage/>,
   },
 ]);
 
