@@ -1,11 +1,14 @@
-const homepage = () => {
+import {useNavigate} from 'react-router-dom'
+const Homepage = () => {
     
+    let navigate = useNavigate();
+
     const handleClickCustomer = () => {
-        //head to customer login page
+        navigate("/customerlogin")
     }
     
     const handleClickEmployee = () => {
-        //head to employee login page
+        navigate("/employeelogin")
     }
     
     
@@ -18,4 +21,4 @@ const homepage = () => {
     );
 }
  
-export default homepage;
+export default Homepage;
