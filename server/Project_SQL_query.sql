@@ -1,5 +1,5 @@
 CREATE TABLE hotel_chain(
-	chain_id SERIAL PRIMARY KEY,
+	chain_id INT PRIMARY KEY,
 	email_address VARCHAR(255) NOT NULL UNIQUE,
 	number_of_hotels INT,
 	address_co VARCHAR(255) NOT NULL UNIQUE,
