@@ -8,6 +8,9 @@ const CustomerPage = () => {
             <h1>Search For the Hotel you want here</h1>
             <Navbar/>
             <SearchFilter/>
+
+
+            <p1>testing  ======</p1>
         </div>
         
     );
