@@ -42,6 +42,8 @@ const SearchFilter = () => {
       <label htmlFor="capacity">Capacity minimum:</label>
       <input type="number" id="capacity" min="1" value={capacity} onChange={(e) => setCapacity(e.target.value)} required/>
       
+      <br/>
+
       <label htmlFor="stars">Minimum stars:</label>
       <select id="stars" value={stars} onChange={(e) => setStars(Array.from(e.target.selectedOptions, (option) => option.value))}>
         <option value="1">1 star</option>
@@ -56,6 +58,8 @@ const SearchFilter = () => {
       
       <label htmlFor="numRooms">Number of rooms:</label>
       <input type="number" id="numRooms" min="1" max="10" onChange={(e) => setNumRooms(e.target.value)}/>
+
+      <br/>
 
       <label htmlFor="amenities">Amenities:</label>
       <div id="amenities">
@@ -89,7 +93,7 @@ const SearchFilter = () => {
         <option value="Hyatt">Hyatt</option>
         <option value="Accor">Accor</option>
       </select>
-
+      
       <button onClick={handleSearch}>Search</button>
 
     </div>

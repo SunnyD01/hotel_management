@@ -13,7 +13,7 @@ const Homepage = () => {
     
     
     return (  
-        <div>
+        <div classroom="homepage">
             <h1>Login</h1>
             <button onClick={handleClickCustomer}>Login as a Customer</button>
             <button onClick={handleClickEmployee}>Login as a Employee</button>
