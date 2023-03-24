@@ -31,16 +31,16 @@ const SearchFilter = () => {
       
     <div>
       <label htmlFor="city">City:</label>
-      <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)} />
+      <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)} required/>
       
       <label htmlFor="checkin">Check-in:</label>
-      <input type="date" id="checkin" value={checkin} onChange={(e) => setCheckin(e.target.value)} />
+      <input type="date" id="checkin" value={checkin} onChange={(e) => setCheckin(e.target.value)} required/>
 
       <label htmlFor="checkout">Check-out:</label>
-      <input type="date" id="checkout" value={checkout} onChange={(e) => setCheckout(e.target.value)} />
+      <input type="date" id="checkout" value={checkout} onChange={(e) => setCheckout(e.target.value)} required/>
       
       <label htmlFor="capacity">Capacity minimum:</label>
-      <input type="number" id="capacity" min="1" value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+      <input type="number" id="capacity" min="1" value={capacity} onChange={(e) => setCapacity(e.target.value)} required/>
       
       <label htmlFor="stars">Minimum stars:</label>
       <select id="stars" value={stars} onChange={(e) => setStars(Array.from(e.target.selectedOptions, (option) => option.value))}>

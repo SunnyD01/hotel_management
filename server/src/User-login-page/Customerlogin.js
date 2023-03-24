@@ -1,4 +1,3 @@
-import Navbar from "../Navbar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,12 +18,11 @@ const Customerlogin = () => {
     return (
         <div>
             <h1>{welcometitle}</h1>
-            <Navbar/>
             <form onSubmit={handleLogin}>
                 <label for="SSN">SSN</label>
-                <input value={SSN} onChange={(e) => setSSN(e.target.value)} type="SSN" placeholder="your SSN" id="SSN" name="SSN"/>
+                <input value={SSN} onChange={(e) => setSSN(e.target.value)} type="SSN" placeholder="your SSN" id="SSN" name="SSN" required/>
                 <label for="password">password---</label>
-                <input value={password} onChange={(e) => setPass(e.target.value)} type="password" placeholder="password" id="password" name="password"/>
+                <input value={password} onChange={(e) => setPass(e.target.value)} type="password" placeholder="password" id="password" name="password" required/>
                 <button>Login</button>
             </form>
         </div>
