@@ -1,4 +1,5 @@
 import {useState} from "react"
+//import axios from "axios"
 
 const SearchFilter = () => {
     
@@ -11,21 +12,39 @@ const SearchFilter = () => {
   const [price, setPrice] = useState([]);
   const [numRooms, setNumRooms] = useState([]);
   const [amenities, setAmenities] = useState([]);
-  const [chain, setChain] = useState([]);
+  const [chain, setChain] = useState('');
 
-  const handleSearch = () => {
-    console.log({
-      city,
-      checkin,
-      checkout,
-      capacity,
-      stars,
-      price,
-      numRooms,
-      amenities,
-      chain,
-    });
+  const [results, setResults] = useState([]);
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get("/api/search", {
+        city,
+        checkin,
+        checkout,
+        capacity,
+        stars,
+        price,
+        numRooms,
+        amenities,
+        chain,
+      });
+      setResults(response.data)
+    } catch (error) {
+      console.error(error)
+    } 
+    
   };
+
+  /*const hotelList = hotel.map((hotel) => {
+    return (
+      <div key={hotel.hotel_id}>
+        <h2>{hotel.hotel_id}</h2>
+        <p>Address: {hotel.address}</p>
+        <p>Capacity: {hotel.capacity}</p>
+      </div>
+    );
+  });*/
   
   return (
       
