@@ -4,6 +4,7 @@ import apiRouter from "./src/api";
 
 const app = express();
 const cors = require("cors");
+const bodyParser = require('body-parser');
 
 // settings
 app.use(cors());
