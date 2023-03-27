@@ -46,7 +46,7 @@ CREATE TABLE booking(
 	booking_id SERIAL PRIMARY KEY,
 	exp_checkin DATE NOT NULL,
 	exp_checkout DATE,
-	time_of_booking VARCHAR(5) NOT NULL,
+	time_of_booking DATETIME NOT NULL,
 	room_id INT NOT NULL UNIQUE,
 	customer_ssn INT NOT NULL,
 	CONSTRAINT fk_customer_ssn
