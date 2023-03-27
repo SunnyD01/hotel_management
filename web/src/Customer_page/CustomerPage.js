@@ -10,9 +10,6 @@ const CustomerPage = () => {
             <h1>{welcometitle}</h1>
             <Navbar/>
             <SearchFilter/>
-
-
-            <p1 c>Searching results is below</p1>
         </div>
         
     );

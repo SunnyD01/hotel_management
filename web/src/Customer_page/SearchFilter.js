@@ -95,26 +95,26 @@ const SearchFilter = () => {
       
     <div>
       <label htmlFor="city">City:</label>
-      <input type="text" id="city" value={city} onClick={handleFilterCityChange} required/>
+      <input type="text" id="city" defaultValue={city} onClick={handleFilterCityChange} required/>
       
       <label htmlFor="checkin">Check-in:</label>
-      <input type="date" id="checkin" value={checkin} onChange={handleFilterCheckinChange} required/>
+      <input type="date" id="checkin" defaultValue={checkin} onChange={handleFilterCheckinChange} required/>
 
       <label htmlFor="checkout">Check-out:</label>
-      <input type="date" id="checkout" value={checkout} onChange={handleFilterCheckoutChange} required/>
+      <input type="date" id="checkout" defaultValue={checkout} onChange={handleFilterCheckoutChange} required/>
       
       <label htmlFor="capacity">Capacity minimum:</label>
-      <input type="number" id="capacity" min="1" value={capacity} onChange={handleFilterCapacityChange} required/>
+      <input type="number" id="capacity" min="1" defaultValue={capacity} onChange={handleFilterCapacityChange} required/>
       
       <br/>
 
       <label htmlFor="stars">Minimum stars:</label>
-      <select id="stars" value={stars} onChange={(e) => setStars(Array.from(e.target.selectedOptions, (option) => option.value))}>
-        <option value="1">1 star</option>
-        <option value="2">2 stars</option>
-        <option value="3">3 stars</option>
-        <option value="4">4 stars</option>
-        <option value="5">5 stars</option>
+      <select id="stars" defaultValue={stars} onChange={(e) => setStars(Array.from(e.target.selectedOptions, (option) => option.value))} multiple={true}>
+        <option defaultValue="1">1 star</option>
+        <option defaultValue="2">2 stars</option>
+        <option defaultValue="3">3 stars</option>
+        <option defaultValue="4">4 stars</option>
+        <option defaultValue="5">5 stars</option>
       </select>
 
       <label htmlFor="price">Price range:</label>
@@ -125,32 +125,32 @@ const SearchFilter = () => {
       <label htmlFor="amenities">Amenities:</label>
       <div id="amenities">
         <label>
-          <input type="checkbox" name="pool" value="pool" onChange={handleFilterAmenityChange}/>
+          <input type="checkbox" name="pool" defaultValue="pool" onChange={handleFilterAmenityChange}/>
           Pool
         </label>
         <label>
-          <input type="checkbox" name="gym" value="gym" onChange={handleFilterAmenityChange}/>
+          <input type="checkbox" name="gym" defaultValue="gym" onChange={handleFilterAmenityChange}/>
           Gym
         </label>
         <label>
-          <input type="checkbox" name="spa" value="spa" onChange={handleFilterAmenityChange}/>
+          <input type="checkbox" name="spa" defaultValue="spa" onChange={handleFilterAmenityChange}/>
           Spa
         </label>
         <label>
-          <input type="checkbox" name="tv" value="tv" onChange={handleFilterAmenityChange}/>
+          <input type="checkbox" name="tv" defaultValue="tv" onChange={handleFilterAmenityChange}/>
           TV
         </label>
         <label>
-          <input type="checkbox" name="fridge" value="firdge" onChange={handleFilterAmenityChange}/>
+          <input type="checkbox" name="fridge" defaultValue="firdge" onChange={handleFilterAmenityChange}/>
           Fridge
         </label>
       </div>
 
       <label htmlFor="chain">Hotel chain:</label>
-      <input type="text" id="chain" value="chain" onChange={handleFilterChainChange}/>
+      <input type="text" id="chain" defaultValue="chain" onChange={handleFilterChainChange}/>
 
       <label htmlFor="hotel">Name of Hotel:</label>
-      <input type="text" id="hotel" value="hotel" onChange={handleFilterHotelChange}/>
+      <input type="text" id="hotel" defaultValue="hotel" onChange={handleFilterHotelChange}/>
       
       <button onClick={handleSearch}>Search</button>
 
