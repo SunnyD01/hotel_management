@@ -38,14 +38,14 @@ CREATE TABLE customer(
 	fname VARCHAR(50) NOT NULL,
 	lname VARCHAR(50) NOT NULL,
 	address VARCHAR(255) NOT NULL UNIQUE,
-	date_of_registration VARCHAR(11) NOT NULL,
+	date_of_registration DATE NOT NULL,
 	booking_history TEXT
 );
 
 CREATE TABLE booking(
 	booking_id SERIAL PRIMARY KEY,
-	exp_checkin VARCHAR(11) NOT NULL,
-	exp_checkout VARCHAR(11),
+	exp_checkin DATE NOT NULL,
+	exp_checkout DATE,
 	time_of_booking VARCHAR(5) NOT NULL,
 	room_id INT NOT NULL UNIQUE,
 	customer_ssn INT NOT NULL,
@@ -56,8 +56,8 @@ CREATE TABLE booking(
 
 CREATE TABLE renting(
 	renting_id SERIAL PRIMARY KEY,
-	checkout_date VARCHAR(11),
-	checkin_date VARCHAR(11),
+	checkout_date DATE,
+	checkin_date DATE,
 	employee INT NOT NULL,
 	customer INT NOT NULL,
 	room_id INT NOT NULL UNIQUE,
