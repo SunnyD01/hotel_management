@@ -1,9 +1,9 @@
 CREATE TABLE hotel_chain(
 	chain_id SERIAL PRIMARY KEY,
-	email_address VARCHAR(255),
+	email_address VARCHAR(255) NOT NULL UNIQUE,
 	number_of_hotels INT,
-	address_co VARCHAR(255),
-	phone_number VARCHAR(255)
+	address_co VARCHAR(255) NOT NULL UNIQUE,
+	phone_number VARCHAR(255) UNIQUE
 );
 
 CREATE TABLE hotel(
@@ -11,44 +11,44 @@ CREATE TABLE hotel(
 	manager_id INT,
 	employees INT,
 	rating INT,
-	phone_number VARCHAR(255),
-	email_address VARCHAR(255),
-	address VARCHAR(255),
+	phone_number VARCHAR(255) NOT NULL UNIQUE,
+	email_address VARCHAR(255) NOT NULL UNIQUE,
+	address VARCHAR(255) NOT NULL UNIQUE,
 	number_of_rooms INT,
-	chain_id INT,
+	chain_id INT NOT NULL,
 	CONSTRAINT fk_chain_id
 		FOREIGN KEY(chain_id)
 			REFERENCES hotel_chain(chain_id)
 );
 
 CREATE TABLE employee(
-	ssn INT PRIMARY KEY,
-	employee_type VARCHAR(50),
-	address VARCHAR(255),
-	fname VARCHAR(50),
-	lname VARCHAR(50),
-	hotel_id INT,
+	ssn INT PRIMARY KEY NOT NULL UNIQUE,
+	employee_type VARCHAR(50) NOT NULL,
+	address VARCHAR(255) NOT NULL,
+	fname VARCHAR(50) NOT NULL,
+	lname VARCHAR(50) NOT NULL,
+	hotel_id INT NOT NULL,
 	CONSTRAINT fk_hotel_id
 		FOREIGN KEY(hotel_id)
 			REFERENCES hotel(hotel_id)
 );
 
 CREATE TABLE customer(
-	ssn INT PRIMARY KEY,
-	fname VARCHAR(50),
-	lname VARCHAR(50),
-	address VARCHAR(255),
-	date_of_registration VARCHAR(11),
+	ssn INT PRIMARY KEY NOT NULL UNIQUE,
+	fname VARCHAR(50) NOT NULL,
+	lname VARCHAR(50) NOT NULL,
+	address VARCHAR(255) NOT NULL UNIQUE,
+	date_of_registration VARCHAR(11) NOT NULL,
 	booking_history TEXT
 );
 
 CREATE TABLE booking(
 	booking_id SERIAL PRIMARY KEY,
-	exp_checkin VARCHAR(11),
+	exp_checkin VARCHAR(11) NOT NULL,
 	exp_checkout VARCHAR(11),
-	time_of_booking VARCHAR(5),
-	room_id INT,
-	customer_ssn INT,
+	time_of_booking VARCHAR(5) NOT NULL,
+	room_id INT NOT NULL UNIQUE,
+	customer_ssn INT NOT NULL,
 	CONSTRAINT fk_customer_ssn
 		FOREIGN KEY(customer_ssn)
 			REFERENCES customer(ssn)
@@ -58,10 +58,10 @@ CREATE TABLE renting(
 	renting_id SERIAL PRIMARY KEY,
 	checkout_date VARCHAR(11),
 	checkin_date VARCHAR(11),
-	employee INT,
-	customer INT,
-	room_id INT,
-	booking_id INT,
+	employee INT NOT NULL,
+	customer INT NOT NULL,
+	room_id INT NOT NULL UNIQUE,
+	booking_id INT NOT NULL,
 	CONSTRAINT fk_booking_id
 		FOREIGN KEY(booking_id)
 			REFERENCES booking(booking_id)
@@ -70,14 +70,15 @@ CREATE TABLE renting(
 CREATE TABLE room(
 	room_id SERIAL PRIMARY KEY,
 	renting_history TEXT,
-	type_of_view VARCHAR(50),
-	capacity INT,
+	type_of_view VARCHAR(50) NOT NULL,
+	capacity INT NOT NULL,
 	damages VARCHAR(255),
-	amenities VARCHAR(255),
-	price INT,
-	ext BOOLEAN,
+	amenities VARCHAR(255) NOT NULL,
+	price INT NOT NULL,
+	ext BOOLEAN NOT NULL,
+	active BOOLEAN NOT NULL,
 	booking_id INT,
-	hotel_id INT,
+	hotel_id INT NOT NULL,
 	renting_id INT,
 	CONSTRAINT fk_booking_id
 		FOREIGN KEY(booking_id)
