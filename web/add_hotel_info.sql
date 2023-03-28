@@ -1038,7 +1038,10 @@ INSERT INTO room
         amenities,
         price,
         ext,
-        hotel_id
+        active,
+        booking_id,
+        hotel_id,
+        renting_id
     )
 VALUES
 --Rooms from Hotel 0001
@@ -1049,7 +1052,10 @@ VALUES
       'Mini-bar,Wifi',
       318,
       TRUE,
-      0001
+      TRUE,
+      null,
+      0001,
+      null
    ),
 
    (
@@ -1059,7 +1065,10 @@ VALUES
       'Mini-fridge,Central AC',
       521,
       FALSE,
-      0001
+      TRUE,
+      null,
+      0001,
+      null
    ),
 
    (
@@ -1069,7 +1078,10 @@ VALUES
       'Central AC',
       382,
       TRUE,
-      0001
+      TRUE,
+      null,
+      0001,
+      null
    ),
 
    (
@@ -1079,7 +1091,10 @@ VALUES
       'Mini-fridge,Wifi,Coffee-bar,Mini-bar',
       668,
       FALSE,
-      0001
+      TRUE,
+      null,
+      0001,
+      null
    ),
 
    (
@@ -1089,7 +1104,10 @@ VALUES
       'Mini-bar,Television,Wifi,Coffee-bar,Mini-fridge',
       684,
       FALSE,
-      0001
+      TRUE,
+      null,
+      0001,
+      null
    ),
 
    (
@@ -1099,7 +1117,10 @@ VALUES
       'Coffee-bar,Mini-bar',
       359,
       TRUE,
-      0001
+      TRUE,
+      null,
+      0001,
+      null
    ),
 
    (
@@ -1109,7 +1130,10 @@ VALUES
       'Mini-fridge,Mini-bar,Wifi,Television,Central AC',
       421,
       TRUE,
-      0001
+      TRUE,
+      null,
+      0001,
+      null
    ),
 
    (
@@ -1119,7 +1143,10 @@ VALUES
       'Central AC',
       482,
       TRUE,
-      0001
+      TRUE,
+      null,
+      0001,
+      null
    ),
 
 --Rooms from Hotel 0002
@@ -1130,7 +1157,10 @@ VALUES
       'Television,Mini-bar,Wifi,Coffee-bar,Mini-fridge',
       375,
       FALSE,
-      0002
+      TRUE,
+      null,
+      0002,
+      null
    ),
 
    (
@@ -1140,7 +1170,10 @@ VALUES
       'Wifi,Mini-fridge,Central AC',
       548,
       FALSE,
-      0002
+      TRUE,
+      null,
+      0002,
+      null
    ),
 
    (
@@ -1150,7 +1183,10 @@ VALUES
       'Coffee-bar,Television',
       351,
       FALSE,
-      0002
+      TRUE,
+      null,
+      0002,
+      null
    ),
 
    (
@@ -1160,7 +1196,10 @@ VALUES
       'Central AC,Coffee-bar,Television',
       264,
       TRUE,
-      0002
+      TRUE,
+      null,
+      0002,
+      null
    ),
 
    (
@@ -1170,7 +1209,10 @@ VALUES
       'Mini-bar,Mini-fridge,Wifi',
       456,
       TRUE,
-      0002
+      TRUE,
+      null,
+      0002,
+      null
    ),
 
    (
@@ -1180,7 +1222,10 @@ VALUES
       'Central AC,Mini-fridge,Wifi',
       258,
       FALSE,
-      0002
+      TRUE,
+      null,
+      0002,
+      null
    ),
 
    (
@@ -1190,7 +1235,10 @@ VALUES
       'Coffee-bar,Mini-bar,Television,Central AC,Wifi',
       482,
       FALSE,
-      0002
+      TRUE,
+      null,
+      0002,
+      null
    ),
 
    (
@@ -1200,7 +1248,10 @@ VALUES
       'Coffee-bar,Wifi',
       260,
       FALSE,
-      0002
+      TRUE,
+      null,
+      0002,
+      null
    ),
 
 --Rooms from Hotel 0003
@@ -1211,7 +1262,10 @@ VALUES
       'Coffee-bar,Wifi,Mini-fridge,Central AC',
       610,
       FALSE,
-      0003
+      TRUE,
+      null,
+      0003,
+      null
    ),
 
    (
@@ -1221,7 +1275,10 @@ VALUES
       'Wifi,Mini-fridge',
       230,
       FALSE,
-      0003
+      TRUE,
+      null,
+      0003,
+      null
    ),
 
    (
@@ -1231,7 +1288,10 @@ VALUES
       '',
       363,
       TRUE,
-      0003
+      TRUE,
+      null,
+      0003,
+      null
    ),
 
    (
@@ -1241,7 +1301,10 @@ VALUES
       'Wifi,Coffee-bar,Mini-bar,Television',
       528,
       FALSE,
-      0003
+      TRUE,
+      null,
+      0003,
+      null
    ),
 
    (
@@ -1251,7 +1314,10 @@ VALUES
       'Wifi,Television,Mini-bar,Central AC',
       421,
       FALSE,
-      0003
+      TRUE,
+      null,
+      0003,
+      null
    ),
 
    (
@@ -1261,7 +1327,10 @@ VALUES
       'Mini-fridge,Television,Wifi,Central AC',
       396,
       TRUE,
-      0003
+      TRUE,
+      null,
+      0003,
+      null
    ),
 
    (
@@ -1271,7 +1340,10 @@ VALUES
       'Coffee-bar,Wifi',
       624,
       FALSE,
-      0003
+      TRUE,
+      null,
+      0003,
+      null
    ),
 
    (
@@ -1281,7 +1353,10 @@ VALUES
       'Wifi,Mini-bar,Mini-fridge,Central AC,Television',
       296,
       FALSE,
-      0003
+      TRUE,
+      null,
+      0003,
+      null
    ),
 
 --Rooms from Hotel 0004
@@ -1292,7 +1367,10 @@ VALUES
       'Mini-fridge,Mini-bar,Wifi,Television,Central AC',
       636,
       TRUE,
-      0004
+      TRUE,
+      null,
+      0004,
+      null
    ),
 
    (
@@ -1302,7 +1380,10 @@ VALUES
       '',
       292,
       TRUE,
-      0004
+      TRUE,
+      null,
+      0004,
+      null
    ),
 
    (
@@ -1312,7 +1393,10 @@ VALUES
       'Central AC,Television,Coffee-bar',
       364,
       TRUE,
-      0004
+      TRUE,
+      null,
+      0004,
+      null
    ),
 
    (
@@ -1322,7 +1406,10 @@ VALUES
       'Central AC,Television,Coffee-bar,Mini-fridge',
       378,
       TRUE,
-      0004
+      TRUE,
+      null,
+      0004,
+      null
    ),
 
    (
@@ -1332,7 +1419,10 @@ VALUES
       'Coffee-bar,Central AC,Mini-fridge',
       662,
       TRUE,
-      0004
+      TRUE,
+      null,
+      0004,
+      null
    ),
 
    (
@@ -1342,7 +1432,10 @@ VALUES
       'Central AC,Television,Coffee-bar,Wifi,Mini-bar',
       332,
       FALSE,
-      0004
+      TRUE,
+      null,
+      0004,
+      null
    ),
 
    (
@@ -1352,7 +1445,10 @@ VALUES
       'Mini-fridge',
       349,
       FALSE,
-      0004
+      TRUE,
+      null,
+      0004,
+      null
    ),
 
    (
@@ -1362,7 +1458,10 @@ VALUES
       'Mini-fridge,Central AC,Mini-bar',
       329,
       TRUE,
-      0004
+      TRUE,
+      null,
+      0004,
+      null
    ),
 
 --Rooms from Hotel 0005
@@ -1373,7 +1472,10 @@ VALUES
       'Television,Central AC',
       235,
       FALSE,
-      0005
+      TRUE,
+      null,
+      0005,
+      null
    ),
 
    (
@@ -1383,7 +1485,10 @@ VALUES
       '',
       641,
       FALSE,
-      0005
+      TRUE,
+      null,
+      0005,
+      null
    ),
 
    (
@@ -1393,7 +1498,10 @@ VALUES
       'Television,Coffee-bar,Central AC',
       698,
       TRUE,
-      0005
+      TRUE,
+      null,
+      0005,
+      null
    ),
 
    (
@@ -1403,7 +1511,10 @@ VALUES
       'Central AC,Mini-fridge,Television',
       288,
       TRUE,
-      0005
+      TRUE,
+      null,
+      0005,
+      null
    ),
 
    (
@@ -1413,7 +1524,10 @@ VALUES
       'Central AC,Wifi,Mini-fridge,Coffee-bar,Mini-bar',
       247,
       TRUE,
-      0005
+      TRUE,
+      null,
+      0005,
+      null
    ),
 
    (
@@ -1423,7 +1537,10 @@ VALUES
       'Wifi',
       530,
       TRUE,
-      0005
+      TRUE,
+      null,
+      0005,
+      null
    ),
 
    (
@@ -1433,7 +1550,10 @@ VALUES
       'Mini-bar,Television,Coffee-bar,Mini-fridge',
       605,
       FALSE,
-      0005
+      TRUE,
+      null,
+      0005,
+      null
    ),
 
    (
@@ -1443,7 +1563,10 @@ VALUES
       'Mini-bar,Central AC,Television,Wifi',
       546,
       FALSE,
-      0005
+      TRUE,
+      null,
+      0005,
+      null
    ),
 
 --Rooms from Hotel 0006
@@ -1454,7 +1577,10 @@ VALUES
       '',
       674,
       FALSE,
-      0006
+      TRUE,
+      null,
+      0006,
+      null
    ),
 
    (
@@ -1464,7 +1590,10 @@ VALUES
       'Coffee-bar',
       595,
       TRUE,
-      0006
+      TRUE,
+      null,
+      0006,
+      null
    ),
 
    (
@@ -1474,7 +1603,10 @@ VALUES
       'Television',
       424,
       TRUE,
-      0006
+      TRUE,
+      null,
+      0006,
+      null
    ),
 
    (
@@ -1484,7 +1616,10 @@ VALUES
       'Mini-fridge,Coffee-bar,Mini-bar',
       417,
       FALSE,
-      0006
+      TRUE,
+      null,
+      0006,
+      null
    ),
 
    (
@@ -1494,7 +1629,10 @@ VALUES
       'Wifi,Mini-fridge',
       233,
       TRUE,
-      0006
+      TRUE,
+      null,
+      0006,
+      null
    ),
 
    (
@@ -1504,7 +1642,10 @@ VALUES
       'Central AC,Mini-fridge,Wifi,Television',
       308,
       TRUE,
-      0006
+      TRUE,
+      null,
+      0006,
+      null
    ),
 
    (
@@ -1514,7 +1655,10 @@ VALUES
       '',
       333,
       FALSE,
-      0006
+      TRUE,
+      null,
+      0006,
+      null
    ),
 
    (
@@ -1524,7 +1668,10 @@ VALUES
       '',
       582,
       TRUE,
-      0006
+      TRUE,
+      null,
+      0006,
+      null
    ),
 
 --Rooms from Hotel 0007
@@ -1535,7 +1682,10 @@ VALUES
       'Mini-fridge,Mini-bar,Coffee-bar',
       249,
       TRUE,
-      0007
+      TRUE,
+      null,
+      0007,
+      null
    ),
 
    (
@@ -1545,7 +1695,10 @@ VALUES
       'Coffee-bar,Television',
       385,
       TRUE,
-      0007
+      TRUE,
+      null,
+      0007,
+      null
    ),
 
    (
@@ -1555,7 +1708,10 @@ VALUES
       'Wifi,Central AC',
       447,
       FALSE,
-      0007
+      TRUE,
+      null,
+      0007,
+      null
    ),
 
    (
@@ -1565,7 +1721,10 @@ VALUES
       'Central AC,Wifi',
       528,
       FALSE,
-      0007
+      TRUE,
+      null,
+      0007,
+      null
    ),
 
    (
@@ -1575,7 +1734,10 @@ VALUES
       '',
       402,
       TRUE,
-      0007
+      TRUE,
+      null,
+      0007,
+      null
    ),
 
    (
@@ -1585,7 +1747,10 @@ VALUES
       '',
       562,
       TRUE,
-      0007
+      TRUE,
+      null,
+      0007,
+      null
    ),
 
    (
@@ -1595,7 +1760,10 @@ VALUES
       'Mini-fridge,Wifi,Mini-bar',
       560,
       TRUE,
-      0007
+      TRUE,
+      null,
+      0007,
+      null
    ),
 
    (
@@ -1605,7 +1773,10 @@ VALUES
       'Television,Central AC,Wifi,Mini-bar,Coffee-bar',
       609,
       FALSE,
-      0007
+      TRUE,
+      null,
+      0007,
+      null
    ),
 
 --Rooms from Hotel 0008
@@ -1616,7 +1787,10 @@ VALUES
       '',
       458,
       TRUE,
-      0008
+      TRUE,
+      null,
+      0008,
+      null
    ),
 
    (
@@ -1626,7 +1800,10 @@ VALUES
       '',
       220,
       TRUE,
-      0008
+      TRUE,
+      null,
+      0008,
+      null
    ),
 
    (
@@ -1636,7 +1813,10 @@ VALUES
       'Mini-bar,Television',
       495,
       TRUE,
-      0008
+      TRUE,
+      null,
+      0008,
+      null
    ),
 
    (
@@ -1646,7 +1826,10 @@ VALUES
       'Mini-bar,Central AC',
       503,
       TRUE,
-      0008
+      TRUE,
+      null,
+      0008,
+      null
    ),
 
    (
@@ -1656,7 +1839,10 @@ VALUES
       'Central AC',
       493,
       FALSE,
-      0008
+      TRUE,
+      null,
+      0008,
+      null
    ),
 
    (
@@ -1666,7 +1852,10 @@ VALUES
       'Mini-fridge,Wifi,Mini-bar',
       264,
       FALSE,
-      0008
+      TRUE,
+      null,
+      0008,
+      null
    ),
 
    (
@@ -1676,7 +1865,10 @@ VALUES
       'Central AC',
       430,
       TRUE,
-      0008
+      TRUE,
+      null,
+      0008,
+      null
    ),
 
    (
@@ -1686,7 +1878,10 @@ VALUES
       'Coffee-bar,Central AC',
       387,
       TRUE,
-      0008
+      TRUE,
+      null,
+      0008,
+      null
    ),
 
 --Rooms from Hotel 0009
@@ -1697,7 +1892,10 @@ VALUES
       'Coffee-bar,Mini-bar,Television,Central AC,Wifi',
       600,
       FALSE,
-      0009
+      TRUE,
+      null,
+      0009,
+      null
    ),
 
    (
@@ -1707,7 +1905,10 @@ VALUES
       'Central AC,Television',
       467,
       FALSE,
-      0009
+      TRUE,
+      null,
+      0009,
+      null
    ),
 
    (
@@ -1717,7 +1918,10 @@ VALUES
       'Wifi,Central AC',
       473,
       FALSE,
-      0009
+      TRUE,
+      null,
+      0009,
+      null
    ),
 
    (
@@ -1727,7 +1931,10 @@ VALUES
       'Television',
       214,
       FALSE,
-      0009
+      TRUE,
+      null,
+      0009,
+      null
    ),
 
    (
@@ -1737,7 +1944,10 @@ VALUES
       'Central AC,Coffee-bar,Mini-fridge,Wifi',
       399,
       FALSE,
-      0009
+      TRUE,
+      null,
+      0009,
+      null
    ),
 
    (
@@ -1747,7 +1957,10 @@ VALUES
       'Wifi',
       393,
       TRUE,
-      0009
+      TRUE,
+      null,
+      0009,
+      null
    ),
 
    (
@@ -1757,7 +1970,10 @@ VALUES
       'Mini-bar,Mini-fridge',
       545,
       TRUE,
-      0009
+      TRUE,
+      null,
+      0009,
+      null
    ),
 
    (
@@ -1767,7 +1983,10 @@ VALUES
       'Mini-fridge,Wifi,Coffee-bar,Mini-bar',
       394,
       TRUE,
-      0009
+      TRUE,
+      null,
+      0009,
+      null
    ),
 
 --Rooms from Hotel 0010
@@ -1778,7 +1997,10 @@ VALUES
       'Wifi',
       452,
       TRUE,
-      0010
+      TRUE,
+      null,
+      0010,
+      null
    ),
 
    (
@@ -1788,7 +2010,10 @@ VALUES
       'Mini-bar',
       501,
       FALSE,
-      0010
+      TRUE,
+      null,
+      0010,
+      null
    ),
 
    (
@@ -1798,7 +2023,10 @@ VALUES
       'Central AC,Wifi',
       445,
       TRUE,
-      0010
+      TRUE,
+      null,
+      0010,
+      null
    ),
 
    (
@@ -1808,7 +2036,10 @@ VALUES
       '',
       270,
       FALSE,
-      0010
+      TRUE,
+      null,
+      0010,
+      null
    ),
 
    (
@@ -1818,7 +2049,10 @@ VALUES
       'Mini-fridge',
       524,
       TRUE,
-      0010
+      TRUE,
+      null,
+      0010,
+      null
    ),
 
    (
@@ -1828,7 +2062,10 @@ VALUES
       '',
       233,
       FALSE,
-      0010
+      TRUE,
+      null,
+      0010,
+      null
    ),
 
    (
@@ -1838,7 +2075,10 @@ VALUES
       'Central AC,Mini-fridge',
       503,
       TRUE,
-      0010
+      TRUE,
+      null,
+      0010,
+      null
    ),
 
    (
@@ -1848,7 +2088,10 @@ VALUES
       'Mini-bar,Mini-fridge,Coffee-bar,Television',
       615,
       TRUE,
-      0010
+      TRUE,
+      null,
+      0010,
+      null
    ),
 
 --Rooms from Hotel 0011
@@ -1859,7 +2102,10 @@ VALUES
       'Mini-fridge,Wifi,Central AC,Television,Coffee-bar',
       495,
       FALSE,
-      0011
+      TRUE,
+      null,
+      0011,
+      null
    ),
 
    (
@@ -1869,7 +2115,10 @@ VALUES
       '',
       561,
       TRUE,
-      0011
+      TRUE,
+      null,
+      0011,
+      null
    ),
 
    (
@@ -1879,7 +2128,10 @@ VALUES
       '',
       270,
       TRUE,
-      0011
+      TRUE,
+      null,
+      0011,
+      null
    ),
 
    (
@@ -1889,7 +2141,10 @@ VALUES
       'Television,Central AC,Coffee-bar,Mini-bar',
       475,
       TRUE,
-      0011
+      TRUE,
+      null,
+      0011,
+      null
    ),
 
    (
@@ -1899,7 +2154,10 @@ VALUES
       'Wifi,Television,Mini-fridge,Central AC,Mini-bar',
       671,
       TRUE,
-      0011
+      TRUE,
+      null,
+      0011,
+      null
    ),
 
    (
@@ -1909,7 +2167,10 @@ VALUES
       'Coffee-bar,Mini-bar,Television,Wifi,Central AC',
       237,
       FALSE,
-      0011
+      TRUE,
+      null,
+      0011,
+      null
    ),
 
    (
@@ -1919,7 +2180,10 @@ VALUES
       'Wifi,Central AC,Coffee-bar,Mini-bar',
       535,
       FALSE,
-      0011
+      TRUE,
+      null,
+      0011,
+      null
    ),
 
    (
@@ -1929,7 +2193,10 @@ VALUES
       'Television,Mini-fridge',
       449,
       TRUE,
-      0011
+      TRUE,
+      null,
+      0011,
+      null
    ),
 
 --Rooms from Hotel 0012
@@ -1940,7 +2207,10 @@ VALUES
       'Mini-fridge,Central AC',
       418,
       FALSE,
-      0012
+      TRUE,
+      null,
+      0012,
+      null
    ),
 
    (
@@ -1950,7 +2220,10 @@ VALUES
       'Mini-fridge',
       600,
       TRUE,
-      0012
+      TRUE,
+      null,
+      0012,
+      null
    ),
 
    (
@@ -1960,7 +2233,10 @@ VALUES
       'Wifi',
       391,
       TRUE,
-      0012
+      TRUE,
+      null,
+      0012,
+      null
    ),
 
    (
@@ -1970,7 +2246,10 @@ VALUES
       'Central AC,Mini-bar,Television',
       625,
       TRUE,
-      0012
+      TRUE,
+      null,
+      0012,
+      null
    ),
 
    (
@@ -1980,7 +2259,10 @@ VALUES
       '',
       397,
       TRUE,
-      0012
+      TRUE,
+      null,
+      0012,
+      null
    ),
 
    (
@@ -1990,7 +2272,10 @@ VALUES
       '',
       454,
       FALSE,
-      0012
+      TRUE,
+      null,
+      0012,
+      null
    ),
 
    (
@@ -2000,7 +2285,10 @@ VALUES
       'Mini-bar,Mini-fridge,Television',
       481,
       TRUE,
-      0012
+      TRUE,
+      null,
+      0012,
+      null
    ),
 
    (
@@ -2010,7 +2298,10 @@ VALUES
       'Central AC,Mini-fridge',
       609,
       TRUE,
-      0012
+      TRUE,
+      null,
+      0012,
+      null
    ),
 
 --Rooms from Hotel 0013
@@ -2021,7 +2312,10 @@ VALUES
       '',
       502,
       TRUE,
-      0013
+      TRUE,
+      null,
+      0013,
+      null
    ),
 
    (
@@ -2031,7 +2325,10 @@ VALUES
       'Mini-bar,Wifi',
       685,
       TRUE,
-      0013
+      TRUE,
+      null,
+      0013,
+      null
    ),
 
    (
@@ -2041,7 +2338,10 @@ VALUES
       '',
       284,
       TRUE,
-      0013
+      TRUE,
+      null,
+      0013,
+      null
    ),
 
    (
@@ -2051,7 +2351,10 @@ VALUES
       'Wifi,Mini-fridge',
       557,
       FALSE,
-      0013
+      TRUE,
+      null,
+      0013,
+      null
    ),
 
    (
@@ -2061,7 +2364,10 @@ VALUES
       'Central AC,Mini-fridge,Coffee-bar,Wifi,Mini-bar',
       618,
       TRUE,
-      0013
+      TRUE,
+      null,
+      0013,
+      null
    ),
 
    (
@@ -2071,7 +2377,10 @@ VALUES
       'Mini-fridge,Coffee-bar',
       267,
       TRUE,
-      0013
+      TRUE,
+      null,
+      0013,
+      null
    ),
 
    (
@@ -2081,7 +2390,10 @@ VALUES
       'Television,Central AC,Mini-bar',
       499,
       FALSE,
-      0013
+      TRUE,
+      null,
+      0013,
+      null
    ),
 
    (
@@ -2091,7 +2403,10 @@ VALUES
       'Mini-fridge,Wifi',
       357,
       TRUE,
-      0013
+      TRUE,
+      null,
+      0013,
+      null
    ),
 
 --Rooms from Hotel 0014
@@ -2102,7 +2417,10 @@ VALUES
       'Central AC,Mini-fridge,Mini-bar',
       390,
       TRUE,
-      0014
+      TRUE,
+      null,
+      0014,
+      null
    ),
 
    (
@@ -2112,7 +2430,10 @@ VALUES
       '',
       681,
       FALSE,
-      0014
+      TRUE,
+      null,
+      0014,
+      null
    ),
 
    (
@@ -2122,7 +2443,10 @@ VALUES
       'Television,Wifi,Central AC',
       471,
       FALSE,
-      0014
+      TRUE,
+      null,
+      0014,
+      null
    ),
 
    (
@@ -2132,7 +2456,10 @@ VALUES
       'Mini-fridge,Central AC,Wifi',
       691,
       FALSE,
-      0014
+      TRUE,
+      null,
+      0014,
+      null
    ),
 
    (
@@ -2142,7 +2469,10 @@ VALUES
       'Coffee-bar,Mini-bar',
       642,
       FALSE,
-      0014
+      TRUE,
+      null,
+      0014,
+      null
    ),
 
    (
@@ -2152,7 +2482,10 @@ VALUES
       'Television',
       284,
       FALSE,
-      0014
+      TRUE,
+      null,
+      0014,
+      null
    ),
 
    (
@@ -2162,7 +2495,10 @@ VALUES
       'Coffee-bar,Central AC',
       359,
       TRUE,
-      0014
+      TRUE,
+      null,
+      0014,
+      null
    ),
 
    (
@@ -2172,7 +2508,10 @@ VALUES
       'Coffee-bar,Wifi',
       611,
       TRUE,
-      0014
+      TRUE,
+      null,
+      0014,
+      null
    ),
 
 --Rooms from Hotel 0015
@@ -2183,7 +2522,10 @@ VALUES
       '',
       235,
       FALSE,
-      0015
+      TRUE,
+      null,
+      0015,
+      null
    ),
 
    (
@@ -2193,7 +2535,10 @@ VALUES
       '',
       364,
       FALSE,
-      0015
+      TRUE,
+      null,
+      0015,
+      null
    ),
 
    (
@@ -2203,7 +2548,10 @@ VALUES
       'Mini-bar,Coffee-bar,Mini-fridge,Wifi',
       370,
       TRUE,
-      0015
+      TRUE,
+      null,
+      0015,
+      null
    ),
 
    (
@@ -2213,7 +2561,10 @@ VALUES
       'Television,Wifi,Mini-fridge',
       699,
       FALSE,
-      0015
+      TRUE,
+      null,
+      0015,
+      null
    ),
 
    (
@@ -2223,7 +2574,10 @@ VALUES
       'Coffee-bar,Television,Wifi,Central AC,Mini-fridge',
       240,
       TRUE,
-      0015
+      TRUE,
+      null,
+      0015,
+      null
    ),
 
    (
@@ -2233,7 +2587,10 @@ VALUES
       'Coffee-bar,Wifi,Mini-bar,Television',
       586,
       FALSE,
-      0015
+      TRUE,
+      null,
+      0015,
+      null
    ),
 
    (
@@ -2243,7 +2600,10 @@ VALUES
       'Coffee-bar,Central AC,Television,Wifi,Mini-bar',
       348,
       FALSE,
-      0015
+      TRUE,
+      null,
+      0015,
+      null
    ),
 
    (
@@ -2253,7 +2613,10 @@ VALUES
       'Mini-bar,Central AC,Wifi',
       535,
       TRUE,
-      0015
+      TRUE,
+      null,
+      0015,
+      null
    ),
 
 --Rooms from Hotel 0016
@@ -2264,7 +2627,10 @@ VALUES
       'Mini-bar,Wifi,Central AC',
       210,
       TRUE,
-      0016
+      TRUE,
+      null,
+      0016,
+      null
    ),
 
    (
@@ -2274,7 +2640,10 @@ VALUES
       'Central AC',
       442,
       FALSE,
-      0016
+      TRUE,
+      null,
+      0016,
+      null
    ),
 
    (
@@ -2284,7 +2653,10 @@ VALUES
       'Mini-fridge,Central AC,Mini-bar,Coffee-bar',
       548,
       TRUE,
-      0016
+      TRUE,
+      null,
+      0016,
+      null
    ),
 
    (
@@ -2294,7 +2666,10 @@ VALUES
       'Mini-bar,Wifi,Television',
       341,
       FALSE,
-      0016
+      TRUE,
+      null,
+      0016,
+      null
    ),
 
    (
@@ -2304,7 +2679,10 @@ VALUES
       'Wifi,Mini-bar',
       676,
       TRUE,
-      0016
+      TRUE,
+      null,
+      0016,
+      null
    ),
 
    (
@@ -2314,7 +2692,10 @@ VALUES
       'Mini-bar,Central AC',
       200,
       FALSE,
-      0016
+      TRUE,
+      null,
+      0016,
+      null
    ),
 
    (
@@ -2324,7 +2705,10 @@ VALUES
       'Television',
       338,
       FALSE,
-      0016
+      TRUE,
+      null,
+      0016,
+      null
    ),
 
    (
@@ -2334,7 +2718,10 @@ VALUES
       'Mini-fridge,Mini-bar',
       465,
       TRUE,
-      0016
+      TRUE,
+      null,
+      0016,
+      null
    ),
 
 --Rooms from Hotel 0017
@@ -2345,7 +2732,10 @@ VALUES
       'Mini-bar,Mini-fridge,Wifi,Television,Central AC',
       524,
       TRUE,
-      0017
+      TRUE,
+      null,
+      0017,
+      null
    ),
 
    (
@@ -2355,7 +2745,10 @@ VALUES
       'Central AC,Mini-fridge,Television,Mini-bar',
       630,
       FALSE,
-      0017
+      TRUE,
+      null,
+      0017,
+      null
    ),
 
    (
@@ -2365,7 +2758,10 @@ VALUES
       'Mini-bar,Central AC',
       511,
       FALSE,
-      0017
+      TRUE,
+      null,
+      0017,
+      null
    ),
 
    (
@@ -2375,7 +2771,10 @@ VALUES
       'Coffee-bar',
       641,
       TRUE,
-      0017
+      TRUE,
+      null,
+      0017,
+      null
    ),
 
    (
@@ -2385,7 +2784,10 @@ VALUES
       'Central AC,Mini-bar,Television',
       365,
       FALSE,
-      0017
+      TRUE,
+      null,
+      0017,
+      null
    ),
 
    (
@@ -2395,7 +2797,10 @@ VALUES
       'Central AC,Coffee-bar,Wifi',
       217,
       FALSE,
-      0017
+      TRUE,
+      null,
+      0017,
+      null
    ),
 
    (
@@ -2405,7 +2810,10 @@ VALUES
       'Mini-bar,Wifi,Television,Central AC',
       645,
       FALSE,
-      0017
+      TRUE,
+      null,
+      0017,
+      null
    ),
 
    (
@@ -2415,7 +2823,10 @@ VALUES
       'Coffee-bar,Central AC',
       458,
       TRUE,
-      0017
+      TRUE,
+      null,
+      0017,
+      null
    ),
 
 --Rooms from Hotel 0018
@@ -2426,7 +2837,10 @@ VALUES
       'Central AC,Wifi,Coffee-bar',
       313,
       TRUE,
-      0018
+      TRUE,
+      null,
+      0018,
+      null
    ),
 
    (
@@ -2436,7 +2850,10 @@ VALUES
       'Television',
       438,
       TRUE,
-      0018
+      TRUE,
+      null,
+      0018,
+      null
    ),
 
    (
@@ -2446,7 +2863,10 @@ VALUES
       '',
       452,
       FALSE,
-      0018
+      TRUE,
+      null,
+      0018,
+      null
    ),
 
    (
@@ -2456,7 +2876,10 @@ VALUES
       'Central AC,Mini-bar,Television,Mini-fridge',
       498,
       FALSE,
-      0018
+      TRUE,
+      null,
+      0018,
+      null
    ),
 
    (
@@ -2466,7 +2889,10 @@ VALUES
       'Mini-fridge,Coffee-bar,Central AC,Wifi',
       376,
       TRUE,
-      0018
+      TRUE,
+      null,
+      0018,
+      null
    ),
 
    (
@@ -2476,7 +2902,10 @@ VALUES
       'Mini-fridge,Wifi,Central AC,Television',
       619,
       TRUE,
-      0018
+      TRUE,
+      null,
+      0018,
+      null
    ),
 
    (
@@ -2486,7 +2915,10 @@ VALUES
       '',
       527,
       FALSE,
-      0018
+      TRUE,
+      null,
+      0018,
+      null
    ),
 
    (
@@ -2496,7 +2928,10 @@ VALUES
       '',
       307,
       FALSE,
-      0018
+      TRUE,
+      null,
+      0018,
+      null
    ),
 
 --Rooms from Hotel 0019
@@ -2507,7 +2942,10 @@ VALUES
       'Central AC,Mini-bar,Television,Wifi,Mini-fridge',
       538,
       FALSE,
-      0019
+      TRUE,
+      null,
+      0019,
+      null
    ),
 
    (
@@ -2517,7 +2955,10 @@ VALUES
       'Wifi,Central AC,Mini-fridge',
       222,
       FALSE,
-      0019
+      TRUE,
+      null,
+      0019,
+      null
    ),
 
    (
@@ -2527,7 +2968,10 @@ VALUES
       'Television,Wifi,Mini-fridge,Mini-bar',
       244,
       FALSE,
-      0019
+      TRUE,
+      null,
+      0019,
+      null
    ),
 
    (
@@ -2537,7 +2981,10 @@ VALUES
       'Central AC,Mini-bar',
       444,
       FALSE,
-      0019
+      TRUE,
+      null,
+      0019,
+      null
    ),
 
    (
@@ -2547,7 +2994,10 @@ VALUES
       'Mini-bar,Mini-fridge,Coffee-bar',
       353,
       FALSE,
-      0019
+      TRUE,
+      null,
+      0019,
+      null
    ),
 
    (
@@ -2557,7 +3007,10 @@ VALUES
       '',
       393,
       TRUE,
-      0019
+      TRUE,
+      null,
+      0019,
+      null
    ),
 
    (
@@ -2567,7 +3020,10 @@ VALUES
       'Central AC,Wifi,Mini-fridge',
       252,
       TRUE,
-      0019
+      TRUE,
+      null,
+      0019,
+      null
    ),
 
    (
@@ -2577,7 +3033,10 @@ VALUES
       'Wifi,Mini-bar,Mini-fridge,Television,Coffee-bar',
       316,
       TRUE,
-      0019
+      TRUE,
+      null,
+      0019,
+      null
    ),
 
 --Rooms from Hotel 0020
@@ -2588,7 +3047,10 @@ VALUES
       'Wifi,Television,Central AC,Coffee-bar',
       586,
       FALSE,
-      0020
+      TRUE,
+      null,
+      0020,
+      null
    ),
 
    (
@@ -2598,7 +3060,10 @@ VALUES
       'Mini-bar,Central AC,Coffee-bar',
       688,
       TRUE,
-      0020
+      TRUE,
+      null,
+      0020,
+      null
    ),
 
    (
@@ -2608,7 +3073,10 @@ VALUES
       'Central AC,Wifi,Mini-fridge',
       611,
       TRUE,
-      0020
+      TRUE,
+      null,
+      0020,
+      null
    ),
 
    (
@@ -2618,7 +3086,10 @@ VALUES
       'Coffee-bar,Television,Central AC,Wifi,Mini-bar',
       662,
       FALSE,
-      0020
+      TRUE,
+      null,
+      0020,
+      null
    ),
 
    (
@@ -2628,7 +3099,10 @@ VALUES
       '',
       313,
       TRUE,
-      0020
+      TRUE,
+      null,
+      0020,
+      null
    ),
 
    (
@@ -2638,7 +3112,10 @@ VALUES
       'Central AC,Mini-bar,Mini-fridge,Television',
       222,
       TRUE,
-      0020
+      TRUE,
+      null,
+      0020,
+      null
    ),
 
    (
@@ -2648,7 +3125,10 @@ VALUES
       'Television',
       543,
       TRUE,
-      0020
+      TRUE,
+      null,
+      0020,
+      null
    ),
 
    (
@@ -2658,7 +3138,10 @@ VALUES
       'Central AC,Coffee-bar,Television',
       551,
       FALSE,
-      0020
+      TRUE,
+      null,
+      0020,
+      null
    ),
 
 --Rooms from Hotel 0021
@@ -2669,7 +3152,10 @@ VALUES
       'Television,Central AC,Mini-bar,Wifi',
       628,
       FALSE,
-      0021
+      TRUE,
+      null,
+      0021,
+      null
    ),
 
    (
@@ -2679,7 +3165,10 @@ VALUES
       'Central AC,Mini-fridge,Mini-bar,Television,Coffee-bar',
       653,
       TRUE,
-      0021
+      TRUE,
+      null,
+      0021,
+      null
    ),
 
    (
@@ -2689,7 +3178,10 @@ VALUES
       'Coffee-bar,Television',
       618,
       FALSE,
-      0021
+      TRUE,
+      null,
+      0021,
+      null
    ),
 
    (
@@ -2699,7 +3191,10 @@ VALUES
       '',
       510,
       TRUE,
-      0021
+      TRUE,
+      null,
+      0021,
+      null
    ),
 
    (
@@ -2709,7 +3204,10 @@ VALUES
       'Mini-fridge,Television',
       655,
       FALSE,
-      0021
+      TRUE,
+      null,
+      0021,
+      null
    ),
 
    (
@@ -2719,7 +3217,10 @@ VALUES
       'Mini-fridge',
       700,
       TRUE,
-      0021
+      TRUE,
+      null,
+      0021,
+      null
    ),
 
    (
@@ -2729,7 +3230,10 @@ VALUES
       '',
       512,
       FALSE,
-      0021
+      TRUE,
+      null,
+      0021,
+      null
    ),
 
    (
@@ -2739,7 +3243,10 @@ VALUES
       'Coffee-bar,Television,Central AC,Mini-fridge',
       407,
       FALSE,
-      0021
+      TRUE,
+      null,
+      0021,
+      null
    ),
 
 --Rooms from Hotel 0022
@@ -2750,7 +3257,10 @@ VALUES
       'Mini-bar,Central AC,Mini-fridge,Wifi,Television',
       631,
       TRUE,
-      0022
+      TRUE,
+      null,
+      0022,
+      null
    ),
 
    (
@@ -2760,7 +3270,10 @@ VALUES
       'Mini-bar,Television,Mini-fridge',
       223,
       FALSE,
-      0022
+      TRUE,
+      null,
+      0022,
+      null
    ),
 
    (
@@ -2770,7 +3283,10 @@ VALUES
       'Mini-bar,Television,Mini-fridge,Central AC',
       661,
       TRUE,
-      0022
+      TRUE,
+      null,
+      0022,
+      null
    ),
 
    (
@@ -2780,7 +3296,10 @@ VALUES
       'Mini-fridge,Television,Mini-bar,Coffee-bar',
       688,
       TRUE,
-      0022
+      TRUE,
+      null,
+      0022,
+      null
    ),
 
    (
@@ -2790,7 +3309,10 @@ VALUES
       'Central AC,Wifi',
       298,
       FALSE,
-      0022
+      TRUE,
+      null,
+      0022,
+      null
    ),
 
    (
@@ -2800,7 +3322,10 @@ VALUES
       'Mini-fridge,Mini-bar,Central AC,Wifi',
       498,
       FALSE,
-      0022
+      TRUE,
+      null,
+      0022,
+      null
    ),
 
    (
@@ -2810,7 +3335,10 @@ VALUES
       'Wifi,Television',
       414,
       FALSE,
-      0022
+      TRUE,
+      null,
+      0022,
+      null
    ),
 
    (
@@ -2820,7 +3348,10 @@ VALUES
       'Wifi,Central AC',
       435,
       FALSE,
-      0022
+      TRUE,
+      null,
+      0022,
+      null
    ),
 
 --Rooms from Hotel 0023
@@ -2831,7 +3362,10 @@ VALUES
       '',
       530,
       TRUE,
-      0023
+      TRUE,
+      null,
+      0023,
+      null
    ),
 
    (
@@ -2841,7 +3375,10 @@ VALUES
       'Central AC,Television',
       597,
       FALSE,
-      0023
+      TRUE,
+      null,
+      0023,
+      null
    ),
 
    (
@@ -2851,7 +3388,10 @@ VALUES
       'Mini-bar,Central AC',
       632,
       TRUE,
-      0023
+      TRUE,
+      null,
+      0023,
+      null
    ),
 
    (
@@ -2861,7 +3401,10 @@ VALUES
       'Mini-bar',
       602,
       FALSE,
-      0023
+      TRUE,
+      null,
+      0023,
+      null
    ),
 
    (
@@ -2871,7 +3414,10 @@ VALUES
       'Coffee-bar,Mini-fridge,Mini-bar,Central AC,Television',
       618,
       FALSE,
-      0023
+      TRUE,
+      null,
+      0023,
+      null
    ),
 
    (
@@ -2881,7 +3427,10 @@ VALUES
       'Mini-bar,Central AC',
       316,
       FALSE,
-      0023
+      TRUE,
+      null,
+      0023,
+      null
    ),
 
    (
@@ -2891,7 +3440,10 @@ VALUES
       'Coffee-bar,Mini-fridge,Wifi,Television,Mini-bar',
       529,
       FALSE,
-      0023
+      TRUE,
+      null,
+      0023,
+      null
    ),
 
    (
@@ -2901,7 +3453,10 @@ VALUES
       '',
       305,
       FALSE,
-      0023
+      TRUE,
+      null,
+      0023,
+      null
    ),
 
 --Rooms from Hotel 0024
@@ -2912,7 +3467,10 @@ VALUES
       'Wifi,Central AC,Coffee-bar,Television,Mini-bar',
       558,
       FALSE,
-      0024
+      TRUE,
+      null,
+      0024,
+      null
    ),
 
    (
@@ -2922,7 +3480,10 @@ VALUES
       '',
       343,
       FALSE,
-      0024
+      TRUE,
+      null,
+      0024,
+      null
    ),
 
    (
@@ -2932,7 +3493,10 @@ VALUES
       '',
       410,
       FALSE,
-      0024
+      TRUE,
+      null,
+      0024,
+      null
    ),
 
    (
@@ -2942,7 +3506,10 @@ VALUES
       'Mini-bar,Central AC,Coffee-bar,Wifi,Television',
       369,
       TRUE,
-      0024
+      TRUE,
+      null,
+      0024,
+      null
    ),
 
    (
@@ -2952,7 +3519,10 @@ VALUES
       'Mini-fridge,Mini-bar,Coffee-bar,Wifi,Television',
       257,
       TRUE,
-      0024
+      TRUE,
+      null,
+      0024,
+      null
    ),
 
    (
@@ -2962,7 +3532,10 @@ VALUES
       'Television,Wifi,Mini-fridge,Central AC,Coffee-bar',
       686,
       TRUE,
-      0024
+      TRUE,
+      null,
+      0024,
+      null
    ),
 
    (
@@ -2972,7 +3545,10 @@ VALUES
       'Television,Central AC,Coffee-bar,Mini-bar',
       266,
       FALSE,
-      0024
+      TRUE,
+      null,
+      0024,
+      null
    ),
 
    (
@@ -2982,7 +3558,10 @@ VALUES
       'Wifi',
       332,
       TRUE,
-      0024
+      TRUE,
+      null,
+      0024,
+      null
    ),
 
 --Rooms from Hotel 0025
@@ -2993,7 +3572,10 @@ VALUES
       'Mini-fridge,Wifi,Television,Central AC',
       488,
       FALSE,
-      0025
+      TRUE,
+      null,
+      0025,
+      null
    ),
 
    (
@@ -3003,7 +3585,10 @@ VALUES
       'Mini-bar,Television',
       674,
       FALSE,
-      0025
+      TRUE,
+      null,
+      0025,
+      null
    ),
 
    (
@@ -3013,7 +3598,10 @@ VALUES
       '',
       450,
       FALSE,
-      0025
+      TRUE,
+      null,
+      0025,
+      null
    ),
 
    (
@@ -3023,7 +3611,10 @@ VALUES
       'Mini-fridge,Mini-bar',
       356,
       FALSE,
-      0025
+      TRUE,
+      null,
+      0025,
+      null
    ),
 
    (
@@ -3033,7 +3624,10 @@ VALUES
       'Central AC,Television,Wifi,Mini-bar,Coffee-bar',
       254,
       TRUE,
-      0025
+      TRUE,
+      null,
+      0025,
+      null
    ),
 
    (
@@ -3043,7 +3637,10 @@ VALUES
       'Coffee-bar,Mini-fridge,Central AC,Wifi',
       659,
       FALSE,
-      0025
+      TRUE,
+      null,
+      0025,
+      null
    ),
 
    (
@@ -3053,7 +3650,10 @@ VALUES
       '',
       607,
       FALSE,
-      0025
+      TRUE,
+      null,
+      0025,
+      null
    ),
 
    (
@@ -3063,6 +3663,9 @@ VALUES
       'Television',
       351,
       FALSE,
-      0025
+      TRUE,
+      null,
+      0025,
+      null
    );
 
