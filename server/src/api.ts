@@ -3,13 +3,16 @@ import {
         getAllHotels,
         login_employee,
         create_customer_acc,
-        getHotelsFromChain
+        getHotelsFromChain,
+        getAllRooms
     } from "./endpoints";
 
 const apiRouter = express.Router();
 
+
 apiRouter.get("/", (req, res) => res.send(req));
 
+apiRouter.get("/room",getAllRooms);
 apiRouter.get("/hotel", getAllHotels);
 apiRouter.get("/hotel/chain", getHotelsFromChain);
 
