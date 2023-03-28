@@ -47,7 +47,7 @@ CREATE TABLE booking(
 	exp_checkin DATE NOT NULL,
 	exp_checkout DATE,
 	time_of_booking DATETIME NOT NULL,
-	room_id INT NOT NULL UNIQUE,
+	room_id INT NOT NULL,
 	customer_ssn INT NOT NULL,
 	CONSTRAINT fk_customer_ssn
 		FOREIGN KEY(customer_ssn)

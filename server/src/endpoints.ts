@@ -3,12 +3,23 @@ import express from "express";
 
 export const getAllRooms = async (req: express.Request, res: express.Response) => {
     try {
-        const hotels = await client.query("SELECT * FROM public.room");
-        res.json(hotels.rows);
+        const room = await client.query("SELECT * FROM public.room");
+        res.json(room.rows);
     } catch (err:any) {
         console.error(err.message);
     }
 };
+
+export const getRoomFromHotel = async (req: express.Request, res: express.Response) => {
+    try {
+        const hotel_id = req.body.hotel_id;
+        const room = await client.query(`SELECT * FROM public.room WHERE hotel_id=${hotel_id}`);
+        res.json(room.rows);
+    } catch (err:any) {
+        console.error(err.message);
+    }
+};
+
 
 export const getAllHotels = async (req: express.Request, res: express.Response) => {
     try {
@@ -82,13 +93,24 @@ export const create_customer_acc = async (
     }
 }
 
-// export const create_booking = async (
-//     req: express.Request,
-//     res: express.Response,
-// ) => {
-//     const booking_id = Math.floor(Math.random()* (9999999999 - 1000000000) + 1000000000);
-//     const customer_ssn = req.body.ssn;
-//     const check_in = req.body.check_in;
-//     const check_out = req.body.check_out;
-//     const booking_time = req.body.datetime;
-// }
+export const create_booking = async (
+    req: express.Request,
+    res: express.Response,
+) => {
+    try{
+        const booking_id = Math.floor(Math.random()* (9999999999 - 1000000000) + 1000000000);
+        const customer_ssn = req.body.ssn;
+        const room_id = req.body.room_id;
+        const check_in = req.body.check_in;
+        const check_out = req.body.check_out;
+        const booking_time = new Date();
+
+        const sign_in = await client.query(
+            `INSERT INTO public.booking VALUES(${booking_id},${check_in},${check_out},${booking_time},${room_id},${customer_ssn})`
+            );
+            return res.status(200).json(sign_in.rows);
+    } catch (err: any) {
+        console.error(err.message);
+}
+
+}
