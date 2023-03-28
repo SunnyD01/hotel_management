@@ -1,5 +1,6 @@
 import Navbar from "../Navbar";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from "axios";
 
 const pagetitle = "Booking & Renting History"
 
@@ -14,6 +15,7 @@ const BookingHistory = () => {
           checkInDate: '2022-04-01',
           checkOutDate: '2022-04-05',
           numGuests: 2,
+          customer_ssn: 235689,
         },
         {
           id: 2,
@@ -23,6 +25,12 @@ const BookingHistory = () => {
           numGuests: 3,
         },
       ]);
+
+    useEffect(() => {
+      axios.get("api")
+      .then((response) => setBookings(response.data))
+      .catch((error) => console.error(error));
+    })
     
     
     
@@ -56,7 +64,7 @@ const BookingHistory = () => {
         <p>No bookings found</p>
       )}
         </div>
-    
+
     );
 }
  
