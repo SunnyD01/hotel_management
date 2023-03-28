@@ -9,8 +9,8 @@ import CustomerPage from './Customer_page/CustomerPage';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom"
+import BookingHistory from './Customer_page/BookingHistory';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +29,10 @@ const router = createBrowserRouter([
     path: "/customerpage",
     element: <CustomerPage/>,
   },
+  {
+    path: "/bookingHistory",
+    element: <BookingHistory/>
+  }
 ]);
 
 
