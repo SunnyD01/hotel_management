@@ -61,10 +61,9 @@ CREATE TABLE renting(
 	employee INT NOT NULL,
 	customer INT NOT NULL,
 	room_id INT NOT NULL UNIQUE,
-	booking_id INT NOT NULL,
-	CONSTRAINT fk_booking_id
-		FOREIGN KEY(booking_id)
-			REFERENCES booking(booking_id)
+	CONSTRAINT fk_room_id
+		FOREIGN KEY(room_id_id)
+			REFERENCES room(room_id)
 );
 
 CREATE TABLE room(

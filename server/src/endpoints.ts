@@ -20,6 +20,16 @@ export const getRoomFromHotel = async (req: express.Request, res: express.Respon
     }
 };
 
+export const getRoomBetweenDates = async (req: express.Request, res: express.Response) => {
+    try {
+        const check_in = req.body.check_in;
+        const check_out = req.body.check_out;
+        const room = await client.query(`SELECT * FROM public.room NATURAL[INNER, LEFT, RIGHT] JOIN JOIN public.booking`);
+        res.json(room.rows);
+    } catch (err:any) {
+        console.error(err.message);
+    }
+};
 
 export const getAllHotels = async (req: express.Request, res: express.Response) => {
     try {
@@ -121,6 +131,24 @@ export const getAllBooking = async (
     try{
         const bookings = await client.query('SELECT * FROM public.booking');
         return res.status(200).json(bookings.rows);
+    } catch (err: any) {
+        console.error(err.message);
+    }   
+}
+
+export const newRental = async (
+    req: express.Request,
+    res: express.Response,
+) => {
+    try{
+        const renting_id = Math.floor(Math.random()* (99999 - 10000) + 10000);
+        const check_in = req.body.check_in;
+        const check_out = req.body.check_out;
+        const employee = req.body.employee;
+	    const customer = req.body.customer
+	    const room_id = req.body.room_id
+        const rental = await client.query(`INSERT INTO public.renting VALUES (${renting_id},'${check_in}','${check_out}',${employee},${customer},${room_id}`);
+        return res.status(200).json(rental.rows);
     } catch (err: any) {
         console.error(err.message);
     }   
