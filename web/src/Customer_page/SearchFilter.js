@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react"
+import {useState} from "react"
 import axios from "axios"
 
 const SearchFilter = () => {
@@ -66,10 +66,11 @@ const SearchFilter = () => {
     chain,
     hotel,
   };
-
+//TODO: fix the api stuff
   const handleSearch = async () => {
     try {
-      const response = await axios.get("/api's place", {
+      console.log(filters)
+      const response = await axios.get("/room", {
         params: filters
       });
       setResults(response.data)
@@ -78,6 +79,7 @@ const SearchFilter = () => {
     } 
     
   };
+  
   
   const roomList = results
   .filter((room) => {
@@ -171,10 +173,10 @@ const SearchFilter = () => {
       </div>
 
       <label htmlFor="chain">Hotel chain:</label>
-      <input type="text" id="chain" value="chain" onChange={handleFilterChainChange}/>
+      <input type="text" id="chain" value={chain} onChange={handleFilterChainChange}/>
 
       <label htmlFor="hotel">Name of Hotel:</label>
-      <input type="text" id="hotel" value="hotel" onChange={handleFilterHotelChange}/>
+      <input type="text" id="hotel" value={hotel} onChange={handleFilterHotelChange}/>
       
       <button onClick={handleSearch}>Search</button>
 
