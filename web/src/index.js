@@ -1,45 +1,56 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Customerlogin from './User-login-page/Customerlogin';
-import Employeelogin from './User-login-page/Employeelogin';
-import CustomerPage from './Customer_page/CustomerPage';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom"
-import BookingHistory from './Customer_page/BookingHistory';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import Customerlogin from "./User-login-page/Customerlogin";
+import Employeelogin from "./User-login-page/Employeelogin";
+import CustomerPage from "./Customer_page/CustomerPage";
+import Landing from "./Employee_page/Landing";
+import Booking from "./Employee_page/Bookings";
+import Rooms from "./Employee_page/Rooms";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import BookingHistory from "./Customer_page/BookingHistory";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
   },
   {
     path: "/customerlogin",
-    element: <Customerlogin/>,
+    element: <Customerlogin />,
   },
   {
     path: "/employeelogin",
-    element: <Employeelogin/>,
+    element: <Employeelogin />,
   },
   {
     path: "/customerpage",
-    element: <CustomerPage/>,
+    element: <CustomerPage />,
   },
   {
     path: "/bookingHistory",
-    element: <BookingHistory/>
-  }
+    element: <BookingHistory />,
+  },
+  {
+    path: "/landing",
+    element: <Landing />,
+  },
+  {
+    path: "/booking",
+    element: <Booking />,
+  },
+  {
+    path: "/rooms",
+    element: <Rooms />,
+  },
 ]);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
