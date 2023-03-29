@@ -82,7 +82,7 @@ export const create_customer_acc = async (
         const cus_fname = req.body.fname;
         const cus_lname = req.body.lname;
         const cus_address = req.body.address;
-        const cus_reg_date = req.body.date;
+        const cus_reg_date = new Date().toISOString().split('T')[0];
 
         const sign_in = await client.query(
             `INSERT INTO public.customer (ssn, fname, lname, address, date_of_registration) VALUES (${cus_ssn},'${cus_fname}','${cus_lname}','${cus_address}',${cus_reg_date})`
@@ -98,19 +98,30 @@ export const create_booking = async (
     res: express.Response,
 ) => {
     try{
-        const booking_id = Math.floor(Math.random()* (9999999999 - 1000000000) + 1000000000);
+        const booking_id = Math.floor(Math.random()* (99999 - 10000) + 10000);
         const customer_ssn = req.body.ssn;
         const room_id = req.body.room_id;
         const check_in = req.body.check_in;
         const check_out = req.body.check_out;
-        const booking_time = new Date();
+        const booking_time = new Date().toISOString().split('T')[0];
 
-        const sign_in = await client.query(
+        const book = await client.query(
             `INSERT INTO public.booking VALUES(${booking_id},${check_in},${check_out},${booking_time},${room_id},${customer_ssn})`
             );
-            return res.status(200).json(sign_in.rows);
+            return res.status(200).json(book.rows);
     } catch (err: any) {
         console.error(err.message);
+    }
 }
 
+export const getAllBooking = async (
+    req: express.Request,
+    res: express.Response,
+) => {
+    try{
+        const bookings = await client.query('SELECT * FROM public.booking');
+        return res.status(200).json(bookings.rows);
+    } catch (err: any) {
+        console.error(err.message);
+    }   
 }

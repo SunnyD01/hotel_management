@@ -5,7 +5,8 @@ import {
         create_customer_acc,
         getHotelsFromChain,
         getAllRooms,
-        create_booking
+        create_booking,
+        getAllBooking
     } from "./endpoints";
 
 const apiRouter = express.Router();
@@ -21,8 +22,9 @@ apiRouter.get("/hotel/chain", getHotelsFromChain);
 
 apiRouter.get("/login/employee", login_employee);
 // apiRouter.get("/login/customer", log);
-apiRouter.post("/createaccount", create_customer_acc);
+apiRouter.post("/new/account", create_customer_acc);
 
-apiRouter.post("/booking", create_booking)
+apiRouter.post("/new/booking", create_booking);
+apiRouter.get("/getAllBookings", getAllBooking);
 export default apiRouter;
 
