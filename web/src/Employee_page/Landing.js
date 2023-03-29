@@ -6,11 +6,27 @@ function Landing() {
   let navigate = useNavigate();
 
   const toggleBooking = () => {
-    navigate(`/booking?address=${encodeURIComponent(selectedAddress)}`);
+    const selectedHotel = dataArray.find(
+      (item) => item.address === selectedAddress
+    );
+    if (selectedHotel) {
+      const { hotel_id, address } = selectedHotel;
+      navigate(
+        `/booking?hotel_id=${hotel_id}&address=${encodeURIComponent(address)}`
+      );
+    }
   };
 
   const toggleRoom = () => {
-    navigate(`/rooms?address=${encodeURIComponent(selectedAddress)}`);
+    const selectedHotel = dataArray.find(
+      (item) => item.address === selectedAddress
+    );
+    if (selectedHotel) {
+      const { hotel_id, address } = selectedHotel;
+      navigate(
+        `/rooms?hotel_id=${hotel_id}&address=${encodeURIComponent(address)}`
+      );
+    }
   };
 
   const [dataArray, setDataArray] = useState([]);

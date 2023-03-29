@@ -95,6 +95,22 @@ export const create_customer_acc = async (
   }
 };
 
+export const getAllRoomsFromhotel = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const hotelId = req.query.hotel_id;
+    const rooms = await client.query(
+      "SELECT * FROM public.room WHERE hotel_id = $1",
+      [hotelId]
+    );
+    res.json(rooms.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
+
 // export const create_booking = async (
 //     req: express.Request,
 //     res: express.Response,
