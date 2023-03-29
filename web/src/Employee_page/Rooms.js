@@ -8,6 +8,7 @@ function Rooms() {
   const selectedAddress = decodeURIComponent(params.get("address"));
   const hotelId = params.get("hotel_id");
   const [rooms, setRooms] = useState([]);
+  const [selectedRoomId, setSelectedRoomId] = useState(null);
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -31,13 +32,22 @@ function Rooms() {
       <h1>Selected Hotel ID: {hotelId}</h1>
       <ul>
         {rooms.map((room) => (
-          <li key={room.room_id}>
+          <li
+            key={room.room_id}
+            style={{
+              border: "1px solid black",
+              backgroundColor:
+                selectedRoomId == room.room_id ? "yellow" : "white",
+            }}
+            onClick={() => setSelectedRoomId(room.room_id)}
+          >
             <h3>Room ID: {room.room_id}</h3>
             <p>Type of view: {room.type_of_view}</p>
             <p>Capacity: {room.capacity}</p>
             <p>Amenities: {room.amenities}</p>
-            <p>Price: {room.price}</p>
             <p>Extension: {room.ext ? "Yes" : "No"}</p>
+            <p>Active: {room.active ? "Yes" : "No"}</p>
+            <p>Price: {room.price}</p>
           </li>
         ))}
       </ul>
