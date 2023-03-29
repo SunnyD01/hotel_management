@@ -24,7 +24,7 @@ export const getRoomBetweenDates = async (req: express.Request, res: express.Res
     try {
         const check_in = req.body.check_in;
         const check_out = req.body.check_out;
-        const room = await client.query(`SELECT * FROM public.room NATURAL[INNER, LEFT, RIGHT] JOIN JOIN public.booking`);
+        const room = await client.query(`SELECT * FROM public.room NATURAL FULL JOIN public.booking WHERE booking_id IS NOT NULL OR renting_id IS NOT NULL`);
         res.json(room.rows);
     } catch (err:any) {
         console.error(err.message);
@@ -147,9 +147,41 @@ export const newRental = async (
         const employee = req.body.employee;
 	    const customer = req.body.customer
 	    const room_id = req.body.room_id
-        const rental = await client.query(`INSERT INTO public.renting VALUES (${renting_id},'${check_in}','${check_out}',${employee},${customer},${room_id}`);
+        const rental = await client.query(`INSERT INTO public.renting (renting_id, checkin_date, checkout_date, employee, customer, room_id) VALUES (${renting_id},'${check_in}','${check_out}',${employee},${customer},${room_id})`);
         return res.status(200).json(rental.rows);
     } catch (err: any) {
         console.error(err.message);
+        return res.status(400)
     }   
 }
+
+export const getAllCustomerBookings = async (req: express.Request, res: express.Response) => {
+    try {
+        const ssn= req.body.ssn;
+        const bookings = await client.query(`SELECT * FROM public.customer NATURAL FULL JOIN public.booking WHERE ssn=${ssn}`);
+        res.json(bookings.rows);
+    } catch (err:any) {
+        console.error(err.message);
+    }
+};
+
+export const getAllCustomerRentals = async (req: express.Request, res: express.Response) => {
+    try {
+        const ssn= req.body.ssn;
+        const rentings = await client.query(`SELECT * FROM public.customer NATURAL FULL JOIN public.renting WHERE ssn=${ssn}`);
+        res.json(rentings.rows);
+    } catch (err:any) {
+        console.error(err.message);
+    }
+};
+
+
+export const getRoomHistory = async (req: express.Request, res: express.Response) => {
+    try {
+        const rid= req.body.room_id;
+        const history = await client.query(`SELECT * FROM public.room NATURAL FULL JOIN public.renting`);
+        res.json(history.rows);
+    } catch (err:any) {
+        console.error(err.message);
+    }
+};

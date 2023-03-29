@@ -8,7 +8,10 @@ import {
         create_booking,
         getAllBooking,
         getRoomBetweenDates,
-        newRental
+        newRental,
+        getAllCustomerBookings,
+        getAllCustomerRentals,
+        getRoomHistory
     } from "./endpoints";
 
 const apiRouter = express.Router();
@@ -28,8 +31,12 @@ apiRouter.get("/login/employee", login_employee);
 apiRouter.post("/new/account", create_customer_acc);
 
 apiRouter.post("/new/booking", create_booking);
+apiRouter.post("/new/rental", newRental);
+
 apiRouter.get("/getAllBookings", getAllBooking);
 
-apiRouter.post("/rental", newRental)
-export default apiRouter;
+apiRouter.get("/customer/view/bookings", getAllCustomerBookings);
+apiRouter.get("/customer/view/rentals", getAllCustomerRentals)
+apiRouter.get("/history/room", getRoomHistory)
 
+export default apiRouter;

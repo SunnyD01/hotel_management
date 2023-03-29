@@ -56,13 +56,13 @@ CREATE TABLE booking(
 
 CREATE TABLE renting(
 	renting_id SERIAL PRIMARY KEY,
-	checkout_date DATE,
 	checkin_date DATE,
+	checkout_date DATE,
 	employee INT NOT NULL,
 	customer INT NOT NULL,
 	room_id INT NOT NULL UNIQUE,
 	CONSTRAINT fk_room_id
-		FOREIGN KEY(room_id_id)
+		FOREIGN KEY(room_id)
 			REFERENCES room(room_id)
 );
 
