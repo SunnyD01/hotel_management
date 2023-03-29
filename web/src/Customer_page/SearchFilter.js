@@ -67,35 +67,69 @@ const SearchFilter = () => {
     hotel,
   };
 //TODO: fix the api stuff
-  const handleSearch = async () => {
-    try {
-      console.log(filters)
-      const response = await axios.get("/room", {
-        params: filters
-      });
-      setResults(response.data)
-    } catch (error) {
-      console.error(error)
-    } 
-    
-  };
-  
-  
-  const roomList = results
-  .filter((room) => {
-    return Object.keys(filters).every((key) => {
-      return room[key] === filters[key];
+const handleSearch = async () => {
+  try {
+    console.log(filters)
+    const response = await axios.get('http://localhost:8000/room', {
+      params: filters
     });
-  }).map((room) => {
-    return (
-      <div key={room.room_id}>
-        <h2>{room.room_id}</h2>
-        <p>Capacity: {room.capacity}</p>
-        <button onClick={() => handleBooking(room.room_id)}>Book now</button>
-      </div>
-    );
-  });
+    setResults(response.data);
+
+    const filteredRooms = response.data.filter((room) => {
+      if (room.city !== filters.city) {
+        return false;
+      }
+
+      if (room.capacity < filters.capacity) {
+        return false;
+      }
+
+      if (filters.chain && room.chain !== filters.chain) {
+        return false;
+      }
+
+      if (filters.hotel && room.hotel !== filters.hotel) {
+        return false;
+      }
+
+      const bookedDates = room.bookings.map((booking) => {
+        return {
+          start: new Date(booking.checkin),
+          end: new Date(booking.checkout),
+        };
+      });
+
+      const checkinDate = new Date(filters.checkin);
+      const checkoutDate = new Date(filters.checkout);
+
+      const isAvailable = bookedDates.every((dates) => {
+        const isBefore = checkoutDate <= dates.start;
+        const isAfter = checkinDate >= dates.end;
+        return isBefore || isAfter;
+      });
+
+      return isAvailable;
+    });
+
+    setResults(filteredRooms);
+    
+  } catch (error) {
+    console.error(error)
+  } 
+};
+
   
+const roomList = results.map((room) => {
+  return (
+    <div key={room.room_id}>
+      <h2>{room.room_id}</h2>
+      <p>Capacity: {room.capacity}</p>
+      <button onClick={() => handleBooking(room.room_id)}>Book now</button>
+    </div>
+  );
+});
+  
+
   const handleBooking = async(room_id) => {  
    try {
     await axios.post("", {

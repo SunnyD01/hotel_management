@@ -3,9 +3,9 @@ const {Client} = require('pg')
 const client = new Client({
     host: 'localhost',
     user: 'postgres',
-    database: 'mydb',
+    database: 'CSI2132 Project',
     port: 5432,
-    password: '1268547'
+    password: 'renny0617'
 });
 
 export default client;
