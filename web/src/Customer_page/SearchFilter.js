@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react"
+import {useState} from "react"
 import axios from "axios"
 
 const SearchFilter = () => {
@@ -69,22 +69,55 @@ const SearchFilter = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get("/api's place", {
-        params: filters
+      console.log(filters)
+      const response = await axios.get('http://localhost:8000/room');
+      setResults(response.data);
+  
+      const filteredRooms = response.data.filter((room) => {
+        if (room.city !== filters.city) {
+          return false;
+        }
+  
+        if (room.capacity < filters.capacity) {
+          return false;
+        }
+  
+        if (filters.chain && room.chain !== filters.chain) {
+          return false;
+        }
+  
+        if (filters.hotel && room.hotel !== filters.hotel) {
+          return false;
+        }
+  
+        const bookedDates = room.bookings.map((booking) => {
+          return {
+            start: new Date(booking.checkin),
+            end: new Date(booking.checkout),
+          };
+        });
+  
+        const checkinDate = new Date(filters.checkin);
+        const checkoutDate = new Date(filters.checkout);
+  
+        const isAvailable = bookedDates.every((dates) => {
+          const isBefore = checkoutDate <= dates.start;
+          const isAfter = checkinDate >= dates.end;
+          return isBefore || isAfter;
+        });
+  
+        return isAvailable;
       });
-      setResults(response.data)
+  
+      setResults(filteredRooms);
+  
     } catch (error) {
       console.error(error)
     } 
-    
   };
   
-  const roomList = results
-  .filter((room) => {
-    return Object.keys(filters).every((key) => {
-      return room[key] === filters[key];
-    });
-  }).map((room) => {
+  
+  const roomList = results.map((room) => {
     return (
       <div key={room.room_id}>
         <h2>{room.room_id}</h2>
@@ -96,7 +129,7 @@ const SearchFilter = () => {
   
   const handleBooking = async(room_id) => {  
    try {
-    await axios.post("", {
+    await axios.post("http://localhost:8000/new/booking", {
       booking_id: Math.floor(Math.random() * 1000000),
       room_id: room_id,
       exp_checkin: checkin,
@@ -104,7 +137,7 @@ const SearchFilter = () => {
       time_of_booking: new Date().toISOString(),
 
     });
-    await axios.put("the api that connect to the active, and display the room is booked", {
+    await axios.put("http://localhost:8000/room", {
       active: true
     });
 
@@ -171,10 +204,10 @@ const SearchFilter = () => {
       </div>
 
       <label htmlFor="chain">Hotel chain:</label>
-      <input type="text" id="chain" value="chain" onChange={handleFilterChainChange}/>
+      <input type="text" id="chain" value={chain} onChange={handleFilterChainChange}/>
 
       <label htmlFor="hotel">Name of Hotel:</label>
-      <input type="text" id="hotel" value="hotel" onChange={handleFilterHotelChange}/>
+      <input type="text" id="hotel" value={hotel} onChange={handleFilterHotelChange}/>
       
       <button onClick={handleSearch}>Search</button>
 
