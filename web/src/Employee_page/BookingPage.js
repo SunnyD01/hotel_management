@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function BookingPage() {
@@ -12,6 +12,9 @@ function BookingPage() {
   const [checkOut, setCheckOut] = useState("");
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [bookingNotConfirmed, setBookingNotConfirmed] = useState(false);
+  const [createAccount, setCreateAccount] = useState(false);
+
+  let navigate = useNavigate();
 
   const handleBooking = async () => {
     setBookingConfirmed(false);
@@ -28,22 +31,36 @@ function BookingPage() {
           checkInDate < booking.exp_checkout &&
           checkOutDate > booking.exp_checkin
       );
-      if (overlappingBooking) {
-        console.error("Room is already booked for the selected dates.");
-        setBookingNotConfirmed(true);
-      } else {
-        const response = await axios.post("http://localhost:8000/new/booking", {
-          ssn,
-          room_id: room.room_id,
-          check_in: checkInDate,
-          check_out: checkOutDate,
-        });
+      const response = await axios.post("http://localhost:8000/checkCustomer", {
+        ssn,
+      });
+      if (response.status === 200) {
         console.log(response.data);
-        console.log("Booking Confirmed");
-        setBookingConfirmed(true);
+        if (overlappingBooking) {
+          console.error("Room is already booked for the selected dates.");
+          setBookingNotConfirmed(true);
+        } else {
+          const response = await axios.post(
+            "http://localhost:8000/new/booking",
+            {
+              ssn,
+              room_id: room.room_id,
+              check_in: checkInDate,
+              check_out: checkOutDate,
+            }
+          );
+          console.log(response.data);
+          console.log("Booking Confirmed");
+          setBookingConfirmed(true);
+        }
+      } else {
+        setCreateAccount(true);
       }
     } catch (error) {
       console.error(error);
+      if (error.response.data.createAccount === true) {
+        setCreateAccount(true);
+      }
     }
   };
 
@@ -80,10 +97,20 @@ function BookingPage() {
           onChange={(e) => setCheckOut(e.target.value)}
         />
       </label>
-      <button onClick={handleBooking}>Book Now</button>
+      {!createAccount && <button onClick={handleBooking}>Book Now</button>}
       {bookingConfirmed && <p>Booking Confirmed!</p>}
       {bookingNotConfirmed && (
         <p>Booking is not confirmed. Please select different dates</p>
+      )}
+      {createAccount && (
+        <p>
+          Customer Account does not exist. Please create one before proceeding.
+        </p>
+      )}
+      {createAccount && (
+        <button onClick={() => navigate("/create-customer-account")}>
+          Create Customer Account
+        </button>
       )}
     </div>
   );

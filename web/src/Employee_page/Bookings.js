@@ -47,11 +47,15 @@ function Bookings() {
         <tbody>
           {bookingData.map((booking) => (
             <tr key={booking.booking_id}>
-              <td>{booking.booking_id}</td>
-              <td>{booking.room_id}</td>
-              <td>{booking.customer_ssn}</td>
-              <td>{new Date(booking.exp_checkin).toLocaleDateString()}</td>
-              <td>{new Date(booking.exp_checkout).toLocaleDateString()}</td>
+              <td style={{ padding: "10px" }}>{booking.booking_id}</td>
+              <td style={{ padding: "10px" }}>{booking.room_id}</td>
+              <td style={{ padding: "10px" }}>{booking.customer_ssn}</td>
+              <td style={{ padding: "10px" }}>
+                {new Date(booking.exp_checkin).toLocaleDateString()}
+              </td>
+              <td style={{ padding: "10px" }}>
+                {new Date(booking.exp_checkout).toLocaleDateString()}
+              </td>
             </tr>
           ))}
         </tbody>

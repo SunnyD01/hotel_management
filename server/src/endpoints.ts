@@ -254,3 +254,23 @@ export const getAllBookingRoom = async (
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const checkCustomer = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const cus_ssn = req.body.ssn;
+    const sign_in = await client.query(
+      `SELECT * FROM public.customer WHERE ssn='${cus_ssn}'`
+    );
+    if (sign_in.rows.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "Customer not found", createAccount: true });
+    }
+    return res.status(200).json(sign_in.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
