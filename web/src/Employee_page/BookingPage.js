@@ -14,6 +14,8 @@ function BookingPage() {
   const [bookingNotConfirmed, setBookingNotConfirmed] = useState(false);
 
   const handleBooking = async () => {
+    setBookingConfirmed(false);
+    setBookingNotConfirmed(false);
     try {
       const checkInDate = new Date(checkIn).toISOString();
       const checkOutDate = new Date(checkOut).toISOString();
