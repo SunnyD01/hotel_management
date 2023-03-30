@@ -12,6 +12,7 @@ import Rooms from "./Employee_page/Rooms";
 import BookingPage from "./Employee_page/BookingPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BookingHistory from "./Customer_page/BookingHistory";
+import CreateCustomerAccount from "./Employee_page/CreateCustomerAccount";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/bookingPage",
     element: <BookingPage />,
+  },
+  {
+    path: "/create-customer-account",
+    element: <CreateCustomerAccount />,
   },
 ]);
 

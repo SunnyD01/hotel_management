@@ -29,6 +29,10 @@ function Landing() {
     }
   };
 
+  const createCustomerAccount = () => {
+    navigate("/create-customer-account");
+  };
+
   const [dataArray, setDataArray] = useState([]);
 
   useEffect(() => {
@@ -58,10 +62,20 @@ function Landing() {
         ))}
       </select>
       <h1>You selected: {selectedAddress}</h1>
+      <button
+        style={{ marginright: "100px", marginBottom: "100px" }}
+        onClick={createCustomerAccount}
+      >
+        Create Customer Account
+      </button>
       {selectedAddress && (
         <div>
-          <button onClick={toggleBooking}>View Bookings</button>
-          <button onClick={toggleRoom}>View Rooms</button>
+          <button style={{ marginRight: "500px" }} onClick={toggleBooking}>
+            View Bookings
+          </button>
+          <button style={{ marginRight: "100px" }} onClick={toggleRoom}>
+            View Rooms
+          </button>
         </div>
       )}
     </div>

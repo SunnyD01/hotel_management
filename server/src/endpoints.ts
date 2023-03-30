@@ -114,7 +114,7 @@ export const create_customer_acc = async (
     const cus_reg_date = new Date().toISOString().split("T")[0];
 
     const sign_in = await client.query(
-      `INSERT INTO public.customer (ssn, fname, lname, address, date_of_registration) VALUES (${cus_ssn},'${cus_fname}','${cus_lname}','${cus_address}',${cus_reg_date})`
+      `INSERT INTO public.customer (ssn, fname, lname, address, date_of_registration) VALUES (${cus_ssn},'${cus_fname}','${cus_lname}','${cus_address}','${cus_reg_date}')`
     );
     return res.status(200).json(sign_in.rows);
   } catch (err: any) {
