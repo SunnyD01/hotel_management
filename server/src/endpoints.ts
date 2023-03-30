@@ -6,8 +6,39 @@ export const getAllRooms = async (
   res: express.Response
 ) => {
   try {
-    const hotels = await client.query("SELECT * FROM public.room");
-    res.json(hotels.rows);
+    const room = await client.query("SELECT * FROM public.room");
+    res.json(room.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
+
+export const getRoomFromHotel = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const hotel_id = req.body.hotel_id;
+    const room = await client.query(
+      `SELECT * FROM public.room WHERE hotel_id=${hotel_id}`
+    );
+    res.json(room.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
+
+export const getRoomBetweenDates = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const check_in = req.body.check_in;
+    const check_out = req.body.check_out;
+    const room = await client.query(
+      `SELECT * FROM public.room NATURAL FULL JOIN public.booking WHERE booking_id IS NOT NULL OR renting_id IS NOT NULL`
+    );
+    res.json(room.rows);
   } catch (err: any) {
     console.error(err.message);
   }
@@ -46,12 +77,10 @@ export const login_employee = async (
 ) => {
   try {
     const emp_ssn = req.body.ssn;
+    const emp_password = req.body.password;
     const sign_in = await client.query(
-      `SELECT * FROM public.employee WHERE ssn='${emp_ssn}'`
+      `SELECT * FROM public.employee WHERE fname='${emp_ssn}' and lname='${emp_password}'`
     );
-    if (sign_in.rows.length === 0) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
     return res.status(200).json(sign_in.rows);
   } catch (err: any) {
     console.error(err.message);
@@ -84,12 +113,111 @@ export const create_customer_acc = async (
     const cus_fname = req.body.fname;
     const cus_lname = req.body.lname;
     const cus_address = req.body.address;
-    const cus_reg_date = req.body.date;
+    const cus_reg_date = new Date().toISOString().split("T")[0];
 
     const sign_in = await client.query(
       `INSERT INTO public.customer (ssn, fname, lname, address, date_of_registration) VALUES (${cus_ssn},'${cus_fname}','${cus_lname}','${cus_address}',${cus_reg_date})`
     );
     return res.status(200).json(sign_in.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
+
+export const create_booking = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const booking_id = Math.floor(Math.random() * (99999 - 10000) + 10000);
+    const customer_ssn = req.body.ssn;
+    const room_id = req.body.room_id;
+    const check_in = req.body.check_in;
+    const check_out = req.body.check_out;
+    const booking_time = new Date().toISOString().split("T")[0];
+
+    const book = await client.query(
+      `INSERT INTO public.booking VALUES(${booking_id},${check_in},${check_out},${booking_time},${room_id},${customer_ssn})`
+    );
+    return res.status(200).json(book.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
+
+export const getAllBooking = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const bookings = await client.query("SELECT * FROM public.booking");
+    return res.status(200).json(bookings.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
+
+export const newRental = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const renting_id = Math.floor(Math.random() * (99999 - 10000) + 10000);
+    const check_in = req.body.check_in;
+    const check_out = req.body.check_out;
+    const employee = req.body.employee;
+    const customer = req.body.customer;
+    const room_id = req.body.room_id;
+    const rental = await client.query(
+      `INSERT INTO public.renting (renting_id, checkin_date, checkout_date, employee, customer, room_id) VALUES (${renting_id},'${check_in}','${check_out}',${employee},${customer},${room_id})`
+    );
+    return res.status(200).json(rental.rows);
+  } catch (err: any) {
+    console.error(err.message);
+    return res.status(400);
+  }
+};
+
+export const getAllCustomerBookings = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const ssn = req.body.ssn;
+    const bookings = await client.query(
+      `SELECT * FROM public.customer NATURAL FULL JOIN public.booking WHERE ssn=${ssn}`
+    );
+    res.json(bookings.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
+
+export const getAllCustomerRentals = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const ssn = req.body.ssn;
+    const rentings = await client.query(
+      `SELECT * FROM public.customer NATURAL FULL JOIN public.renting WHERE ssn=${ssn}`
+    );
+    res.json(rentings.rows);
+  } catch (err: any) {
+    console.error(err.message);
+  }
+};
+
+export const getRoomHistory = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const rid = req.body.room_id;
+    const history = await client.query(
+      `SELECT * FROM public.room NATURAL FULL JOIN public.renting`
+    );
+    res.json(history.rows);
   } catch (err: any) {
     console.error(err.message);
   }
@@ -110,14 +238,3 @@ export const getAllRoomsFromhotel = async (
     console.error(err.message);
   }
 };
-
-// export const create_booking = async (
-//     req: express.Request,
-//     res: express.Response,
-// ) => {
-//     const booking_id = Math.floor(Math.random()* (9999999999 - 1000000000) + 1000000000);
-//     const customer_ssn = req.body.ssn;
-//     const check_in = req.body.check_in;
-//     const check_out = req.body.check_out;
-//     const booking_time = req.body.datetime;
-// }
