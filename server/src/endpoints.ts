@@ -92,10 +92,9 @@ export const login_customer = async (
   res: express.Response
 ) => {
   try {
-    const cus_email = req.body.email;
-    const cus_password = req.body.password;
+    const cus_ssn = req.body.ssn;
     const sign_in = await client.query(
-      `SELECT * FROM public.customer WHERE fname='${cus_email}' and lname='${cus_password}'`
+      `SELECT * FROM public.customer WHERE ssn='${cus_ssn}'`
     );
     return res.status(200).json(sign_in.rows);
   } catch (err: any) {
@@ -109,7 +108,6 @@ export const create_customer_acc = async (
 ) => {
   try {
     const cus_ssn = req.body.ssn;
-    const cus_password = req.body.password;
     const cus_fname = req.body.fname;
     const cus_lname = req.body.lname;
     const cus_address = req.body.address;
@@ -137,7 +135,7 @@ export const create_booking = async (
     const booking_time = new Date().toISOString().split("T")[0];
 
     const book = await client.query(
-      `INSERT INTO public.booking VALUES(${booking_id},${check_in},${check_out},${booking_time},${room_id},${customer_ssn})`
+      `INSERT INTO public.booking VALUES(${booking_id},'${check_in}','${check_out}','${booking_time}',${room_id},${customer_ssn})`
     );
     return res.status(200).json(book.rows);
   } catch (err: any) {
@@ -236,5 +234,23 @@ export const getAllRoomsFromhotel = async (
     res.json(rooms.rows);
   } catch (err: any) {
     console.error(err.message);
+  }
+};
+
+export const getAllBookingRoom = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  const { room_id, check_in, check_out } = req.query;
+  try {
+    const bookings = await client.query(
+      `SELECT * FROM public.booking 
+       WHERE room_id = $1 AND check_in <= $2 AND check_out >= $3`,
+      [room_id, check_out, check_in]
+    );
+    return res.status(200).json(bookings.rows);
+  } catch (err: any) {
+    console.error(err.message);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };

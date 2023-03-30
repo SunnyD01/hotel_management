@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Rooms() {
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const selectedAddress = decodeURIComponent(params.get("address"));
   const hotelId = params.get("hotel_id");
@@ -26,6 +27,11 @@ function Rooms() {
     fetchRooms();
   }, []);
 
+  const handleBookNowClick = (room) => {
+    const roomString = encodeURIComponent(JSON.stringify(room));
+    navigate(`/bookingPage?room=${roomString}`);
+  };
+
   return (
     <div>
       <h1>Selected Address: {selectedAddress}</h1>
@@ -47,7 +53,8 @@ function Rooms() {
             <p>Amenities: {room.amenities}</p>
             <p>Extension: {room.ext ? "Yes" : "No"}</p>
             <p>Active: {room.active ? "Yes" : "No"}</p>
-            <p>Price: {room.price}</p>
+            <p>Price: ${room.price}</p>
+            <button onClick={() => handleBookNowClick(room)}>Book Now</button>
           </li>
         ))}
       </ul>

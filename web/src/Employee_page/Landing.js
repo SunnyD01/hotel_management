@@ -60,7 +60,7 @@ function Landing() {
       <h1>You selected: {selectedAddress}</h1>
       {selectedAddress && (
         <div>
-          <button onClick={toggleBooking}>Book Now</button>
+          <button onClick={toggleBooking}>View Bookings</button>
           <button onClick={toggleRoom}>View Rooms</button>
         </div>
       )}
