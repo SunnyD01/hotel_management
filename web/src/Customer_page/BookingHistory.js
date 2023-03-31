@@ -39,24 +39,6 @@ const BookingHistory = () => {
     },
   ]);
 
-  const [rentings, setRentings] = useState([
-    {
-      id: 1,
-      hotelName: "Hotel A",
-      checkInDate: "2022-06-17",
-      checkOutDate: "2022-08-05",
-      numGuests: 5,
-      customer_ssn: 235689,
-    },
-    {
-      id: 2,
-      hotelName: "Hotel B",
-      checkInDate: "2022-05-10",
-      checkOutDate: "2022-05-15",
-      numGuests: 3,
-    },
-  ]);
-
   useEffect(() => {
     axios
       .get("http://localhost:8000/getAllBookings")

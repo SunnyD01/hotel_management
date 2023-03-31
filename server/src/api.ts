@@ -19,14 +19,8 @@ import {
   updateBookingArchive,
   updateRentingArchive,
   showRentingArchiveHotel,
-  showBookingArchiveHotel,,
-        create_booking,
-        getAllBooking,
-        getRoomBetweenDates,
-        newRental,
-        getAllCustomerBookings,
-        getAllCustomerRentals,
-        getRoomHistory
+  showBookingArchiveHotel,
+  login_customer,
 } from "./endpoints";
 
 const apiRouter = express.Router();
@@ -42,6 +36,7 @@ apiRouter.get("/rooms/hotel", getAllRoomsFromhotel);
 
 apiRouter.post("/login_employee", login_employee);
 apiRouter.get("/login/employee", login_employee);
+apiRouter.post("/login", login_customer);
 apiRouter.post("/new/account", create_customer_acc);
 
 apiRouter.post("/new/booking", create_booking);
@@ -64,7 +59,7 @@ apiRouter.get("/rentings/hotels/archive/:hotel_id", showRentingArchiveHotel);
 apiRouter.get("/bookings/hotels/archive/:hotel_id", showBookingArchiveHotel);
 
 apiRouter.get("/customer/view/bookings", getAllCustomerBookings);
-apiRouter.get("/customer/view/rentals", getAllCustomerRentals)
-apiRouter.get("/history/room", getRoomHistory)
+apiRouter.get("/customer/view/rentals", getAllCustomerRentals);
+apiRouter.get("/history/room", getRoomHistory);
 
 export default apiRouter;

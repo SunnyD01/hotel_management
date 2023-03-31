@@ -97,11 +97,17 @@ export const login_customer = async (
   try {
     const cus_ssn = req.body.ssn;
     const sign_in = await client.query(
-      `SELECT * FROM public.customer WHERE ssn='${cus_ssn}'`
+      `SELECT COUNT(*) FROM public.customer WHERE ssn='${cus_ssn}'`
     );
-    return res.status(200).json(sign_in.rows);
+    const count = sign_in.rows[0].count;
+    if (count === "1") {
+      return res.status(200).json({ message: "Login successful" });
+    } else {
+      return res.status(401).json({ message: "Invalid SSN" });
+    }
   } catch (err: any) {
     console.error(err.message);
+    return res.status(500).json({ message: "Server error" });
   }
 };
 
