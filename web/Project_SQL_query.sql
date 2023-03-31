@@ -37,7 +37,7 @@ CREATE TABLE customer(
 	ssn INT PRIMARY KEY NOT NULL UNIQUE,
 	fname VARCHAR(50) NOT NULL,
 	lname VARCHAR(50) NOT NULL,
-	address VARCHAR(255) NOT NULL UNIQUE,
+	address VARCHAR(255) NOT NULL,
 	date_of_registration DATE NOT NULl,
 	booking_history TEXT
 );
