@@ -22,7 +22,7 @@ const Customerlogin = () => {
         ssn: SSN,
       });
       console.log(response.data);
-      navigate("/customerpage");
+      navigate("/customerpage", { state: { ssn: SSN } });
     } catch (error) {
       console.error(error.message);
       setEMessage("SSN or password is incorrect");
