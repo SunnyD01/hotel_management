@@ -10,6 +10,7 @@ function Rentals() {
   const hotelId = params.get("hotel_id");
 
   const [rentings, setRentings] = useState([]);
+  const [archivedRentingIds, setArchivedRentingIds] = useState([]);
 
   useEffect(() => {
     async function fetchRentings() {
@@ -38,6 +39,10 @@ function Rentals() {
             : renting
         )
       );
+      setArchivedRentingIds((prevArchivedRentingIds) => [
+        ...prevArchivedRentingIds,
+        rentingId,
+      ]);
     } catch (error) {
       console.error(error);
     }
@@ -80,9 +85,13 @@ function Rentals() {
             </p>
             <p style={{ margin: 0 }}>Customer SSN: {renting.customer}</p>
             <p style={{ margin: 0 }}>Payment Method: {renting.payment}</p>
-            <button onClick={() => handleArchiveRenting(renting.renting_id)}>
-              Archive Renting
-            </button>
+            {archivedRentingIds.includes(renting.renting_id) ? (
+              <button disabled>Renting Archived</button>
+            ) : (
+              <button onClick={() => handleArchiveRenting(renting.renting_id)}>
+                Archive Renting
+              </button>
+            )}
           </li>
         ))}
       </ul>
