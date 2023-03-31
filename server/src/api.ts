@@ -27,7 +27,7 @@ apiRouter.get("/hotel/chain", getHotelsFromChain);
 
 
 apiRouter.get("/login/employee", login_employee);
-// apiRouter.get("/login/customer", log);
+apiRouter.get("/login/customer", login_employee);
 apiRouter.post("/new/account", create_customer_acc);
 
 apiRouter.post("/new/booking", create_booking);
