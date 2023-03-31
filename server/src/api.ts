@@ -21,6 +21,7 @@ import {
   showRentingArchiveHotel,
   showBookingArchiveHotel,
   login_customer,
+  getRoomsAvailability,
 } from "./endpoints";
 
 const apiRouter = express.Router();
@@ -44,8 +45,8 @@ apiRouter.post("/new/rental", newRental);
 
 apiRouter.get("/getAllBookings", getAllBooking);
 
-apiRouter.get("/customer/view/bookings", getAllCustomerBookings);
-apiRouter.get("/customer/view/rentals", getAllCustomerRentals);
+apiRouter.get("/customer/view/bookings/:customer_ssn", getAllCustomerBookings);
+apiRouter.get("/customer/view/rentals/:customer", getAllCustomerRentals);
 apiRouter.get("/history/room", getRoomHistory);
 
 apiRouter.post("/checkCustomer", checkCustomer);
@@ -61,5 +62,7 @@ apiRouter.get("/bookings/hotels/archive/:hotel_id", showBookingArchiveHotel);
 apiRouter.get("/customer/view/bookings", getAllCustomerBookings);
 apiRouter.get("/customer/view/rentals", getAllCustomerRentals);
 apiRouter.get("/history/room", getRoomHistory);
+
+apiRouter.get("/Search/Rooms", getRoomsAvailability);
 
 export default apiRouter;

@@ -62,6 +62,7 @@ INSERT INTO hotel
         phone_number,
         email_address,
         address,
+        city,
         number_of_rooms,
         chain_id
 
@@ -75,6 +76,7 @@ VALUES
         '6130010001',
         'hotel1@chain1.com',
         '101 queen street, Ottawa, ON, CA',
+        'Ottawa',
         8,
         001
     ),
@@ -86,6 +88,7 @@ VALUES
         '6130010002',
         'hotel2@chain1.com',
         '101 King street, Toronto, ON, CA',
+        'Toronto',
         8,
         001
     ),
@@ -97,6 +100,7 @@ VALUES
         '6130010003',
         'hotel3@chain1.com',
         '525 Bay St., Toronto, ON M5G 2L2',
+        'Toronto',
         8,
         001
     ),
@@ -108,6 +112,7 @@ VALUES
         '6130010004',
         'hotel4@chain1.com',
         '145 Richmond St W, Toronto, ON M5H 2L2',
+        'Toronto',
         8,
         001
     ),
@@ -119,6 +124,7 @@ VALUES
         '6130010005',
         'hotel5@chain1.com',
         '100 Front St W, Toronto, ON M5J 1E3',
+        'Toronto',
         8,
         001
     ),
@@ -130,6 +136,7 @@ VALUES
         '6130020006',
         'hotel6@chain2.com',
         '249 Queens Quay W, Toronto, ON M5J 2N5',
+        'Toronto',
         8,
         002
     ),
@@ -141,6 +148,7 @@ VALUES
         '6130020007',
         'hotel7@chain2.com',
         '75 Bremner Blvd, Toronto, ON M5J 0A7',
+        'Toronto',
         8,
         002
     ),
@@ -152,6 +160,7 @@ VALUES
         '6130020008',
         'hotel8@chain2.com',
         '75 Lower Simcoe St, Toronto, ON M5J 3A6',
+        'Toronto',
         8,
         002
     ),
@@ -163,6 +172,7 @@ VALUES
         '6130020009',
         'hotel9@chain2.com',
         'One Blue Jays Way, Toronto, ON M5V 1J4',
+        'Toronto',
         8,
         002
     ),
@@ -174,6 +184,7 @@ VALUES
         '61300200010',
         'hotel10@chain2.com',
         '1 Harbour Square, Toronto, ON M5J 1A6',
+        'Toronto',
         8,
         002
     ),
@@ -185,6 +196,7 @@ VALUES
         '61300300011',
         'hotel11@chain3.com',
         '255 Wellington St W, Toronto, ON M5V 3P9',
+        'Toronto',
         8,
         003
     ),
@@ -196,6 +208,7 @@ VALUES
         '6130030012',
         'hotel12@chain3.com',
         '370 King St W, Toronto, ON M5V 1J9',
+        'Toronto',
         8,
         003
     ),
@@ -207,6 +220,7 @@ VALUES
         '6130030013',
         'hotel13@chain3.com',
         '348 Adelaide St W, Toronto, ON M5V 1R7',
+        'Toronto',
         8,
         003
     ),
@@ -218,6 +232,7 @@ VALUES
         '6130030014',
         'hotel14@chain3.com',
         '335 Queen St W, Toronto, ON M5V 2A1',
+        'Toronto',
         8,
         003
     ),
@@ -229,6 +244,7 @@ VALUES
         '6130030015',
         'hotel15@chain3.com',
         '1111 Queen St E unit d, Toronto, ON M5C 1S2',
+        'Toronto',
         8,
         003
     ),
@@ -240,6 +256,7 @@ VALUES
         '6130040016',
         'hotel16@chain4.com',
         '45 The Esplanade, Toronto, ON M5E 1W2',
+        'Toronto',
         8,
         004
     ),
@@ -251,6 +268,7 @@ VALUES
         '6130040017',
         'hotel17@chain4.com',
         '111 Lombard St, Toronto, ON M5C 2T9',
+        'Toronto',
         8,
         004
     ),
@@ -262,6 +280,7 @@ VALUES
         '6130040018',
         'hotel18@chain4.com',
         '118 Shuter St, Toronto, ON M5A 1V8',
+        'Toronto',
         8,
         004
     ),
@@ -273,6 +292,7 @@ VALUES
         '6130040019',
         'hotel19@chain4.com',
         '200 Victoria St, Toronto, ON M5B 1V8',
+        'Toronto',
         8,
         004
     ),
@@ -284,6 +304,7 @@ VALUES
         '6130040020',
         'hotel20@chain4.com',
         '209 Yonge St, Toronto, ON M5B 1M4',
+        'Toronto',
         8,
         004
     ),
@@ -295,6 +316,7 @@ VALUES
         '6130050021',
         'hotel21@chain5.com',
         '108 Chestnut St, Toronto, ON M5G 1R3',
+        'Toronto',
         8,
         005
     ),
@@ -306,6 +328,7 @@ VALUES
         '6130050022',
         'hotel22@chain5.com',
         '194 Queen St W, Toronto, ON M5V 1Z1',
+        'Toronto',
         8,
         005
     ),
@@ -317,6 +340,7 @@ VALUES
         '6130050023',
         'hotel23@chain5.com',
         '44 McGill St, Toronto, ON M5B 1H2',
+        'Toronto',
         8,
         005
     ),
@@ -328,6 +352,7 @@ VALUES
         '6130050024',
         'hotel24@chain5.com',
         '243 Seaton St, Toronto, ON M5A 2T5',
+        'Toronto',
         8,
         005
     ),
@@ -339,6 +364,7 @@ VALUES
         '6130050025',
         'hotel25@chain5.com',
         '335 Jarvis St, Toronto, ON M5B 2C2',
+        'Toronto',
         8,
         005
     );

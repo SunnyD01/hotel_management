@@ -1,5 +1,4 @@
 import SearchFilter from "./SearchFilter";
-import Navbar from "../Navbar";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const welcometitle = "Search For the Hotel you want here";
@@ -10,7 +9,7 @@ const CustomerPage = () => {
   const navigate = useNavigate();
 
   const handleBookingRentingHistoryClick = () => {
-    navigate("/bookingHistory");
+    navigate("/bookingHistory", { state: { ssn: ssn } });
   };
 
   const handleHomepageClick = () => {
