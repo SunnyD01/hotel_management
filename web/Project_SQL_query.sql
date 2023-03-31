@@ -77,6 +77,7 @@ CREATE TABLE room(
 	price INT NOT NULL,
 	ext BOOLEAN NOT NULL,
 	active BOOLEAN NOT NULL,
+	available BOOLEAN NOT NULL
 	booking_id INT,
 	hotel_id INT NOT NULL,
 	renting_id INT,

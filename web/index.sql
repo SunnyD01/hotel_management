@@ -1,5 +1,5 @@
 CREATE INDEX index_room_ava
-ON room (ava);
+ON room (availability);
 
 CREATE INDEX index_type_of_view
 ON room (type_of_view);

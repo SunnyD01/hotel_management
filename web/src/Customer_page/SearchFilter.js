@@ -14,10 +14,9 @@ const SearchFilter = () => {
   const [amenities, setAmenities] = useState([]);
   const [chain, setChain] = useState('');
   const [hotel, setHotel] = useState([]);
-  const date = useState([]);
 
   const [results, setResults] = useState([]);
-  //const customer_ssn = axios.get("http://localhost:8000/login/customer",{params: {ssn}} )
+  const customer_ssn = axios.get("http://localhost:8000/login/customer",{params: {ssn}} )
 
   const handleFilterCityChange = (event) => {
     setCity(event.target.value);
@@ -95,53 +94,48 @@ const SearchFilter = () => {
 
   const handleSearch = async () => {
     try {
-      console.log(filters)
+      console.log(filters);
       const response = await axios.get('http://localhost:8000/room');
-      
       const theCity = filteredCity(response, filters.city);
       const theCapacity = filteredCapacity(theCity, filters.capacity);
       const theChain = filteredChain(theCapacity, filters.chain);
       const theHotel = filteredHotel(theChain, filters.hotel);
       const theAmenities = filteredAmenities(theHotel, filters.amenities);
-  
-      const bookedDates = date.map((booking) => {
-        return {
-          start: new Date(booking.checkin),
-          end: new Date(booking.checkout),
-        };
-      });
+      const bookedDates = theAmenities.flatMap(room => room.bookings.map(booking => ({
+        start: new Date(booking.checkin),
+        end: new Date(booking.checkout)
+      })));
   
       const checkinDate = new Date(filters.checkin);
       const checkoutDate = new Date(filters.checkout);
-
+  
       const isAvailable = bookedDates.every((dates) => {
         const isBefore = checkoutDate <= dates.start;
         const isAfter = checkinDate >= dates.end;
         return isBefore || isAfter;
       });
-      if (isAvailable === false) {
-        return false;
-      }
-
-      setResults(theAmenities);
       
+      setResults(isAvailable ? theAmenities : []);
+      console.log(results);
+      console.log("test1");
     } catch (error) {
-      console.error(error)
-    } 
+      console.error(error);
+    }
   };
   
   
-  const roomList = results.map((room) => {
+  
+  const roomList = results.map((room, customer_ssn) => {
     return (
       <div key={room.room_id}>
         <h2>{room.room_id}</h2>
         <p>Capacity: {room.capacity}</p>
-        <button onClick={() => handleBooking(room.room_id)}>Book now</button>
+        <button onClick={() => handleBooking(room.room_id, customer_ssn)}>Book now</button>
       </div>
     );
   });
   
-  const handleBooking = async(room_id) => {  
+  const handleBooking = async(room_id, customer_ssn)=> {  
    try {
     await axios.post("http://localhost:8000/new/booking", {
       booking_id: Math.floor(Math.random() * 1000000),
@@ -149,11 +143,12 @@ const SearchFilter = () => {
       exp_checkin: checkin,
       exp_checkout: checkout,
       time_of_booking: new Date().toISOString(),
-      //customer_ssn: customer_ssn,
+      customer_ssn: customer_ssn,
 
     });
     await axios.put("http://localhost:8000/room", {
-      active: true
+      booking_id: booking_id,
+      available: false
     });
 
     const update = results.filter((room) => room.room_id !== room_id);
