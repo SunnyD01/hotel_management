@@ -25,6 +25,23 @@ function Rentals() {
     fetchRentings();
   }, [hotelId]);
 
+  async function handleArchiveRenting(rentingId) {
+    try {
+      await axios.put(`http://localhost:8000/rentings/${rentingId}`, {
+        archive: true,
+      });
+      setRentings((prevRentings) =>
+        prevRentings.map((renting) =>
+          renting.renting_id === rentingId
+            ? { ...renting, archive: true }
+            : renting
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div>
       <h1>Hotel ID: {hotelId}</h1>
@@ -49,6 +66,9 @@ function Rentals() {
             </p>
             <p style={{ margin: 0 }}>Customer SSN: {renting.customer}</p>
             <p style={{ margin: 0 }}>Payment Method: {renting.payment}</p>
+            <button onClick={() => handleArchiveRenting(renting.renting_id)}>
+              Archive Renting
+            </button>
           </li>
         ))}
       </ul>

@@ -14,6 +14,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BookingHistory from "./Customer_page/BookingHistory";
 import CreateCustomerAccount from "./Employee_page/CreateCustomerAccount";
 import Rentals from "./Employee_page/Rentals";
+import Archived from "./Employee_page/Archived";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: "/rentals",
     element: <Rentals />,
+  },
+  {
+    path: "/archived",
+    element: <Archived />,
   },
 ]);
 

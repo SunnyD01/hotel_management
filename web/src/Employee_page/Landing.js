@@ -41,6 +41,18 @@ function Landing() {
     }
   };
 
+  const toggleArchives = () => {
+    const selectedHotel = dataArray.find(
+      (item) => item.address === selectedAddress
+    );
+    if (selectedHotel) {
+      const { hotel_id, address } = selectedHotel;
+      navigate(
+        `/archived?hotel_id=${hotel_id}&address=${encodeURIComponent(address)}`
+      );
+    }
+  };
+
   const createCustomerAccount = () => {
     navigate("/create-customer-account");
   };
@@ -90,6 +102,9 @@ function Landing() {
           </button>
           <button style={{ marginRight: "100px" }} onClick={toggleRenting}>
             View Rentings
+          </button>
+          <button style={{ marginRight: "100px" }} onClick={toggleArchives}>
+            View Archives
           </button>
         </div>
       )}

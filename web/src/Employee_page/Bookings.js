@@ -32,6 +32,7 @@ function Bookings() {
         room_id: booking.room_id,
         booking_id: booking.booking_id,
         hotel_id: booking.hotel_id,
+        archive: false,
         payment: paymentMethod,
       })
         .then((response) => {
@@ -39,6 +40,9 @@ function Bookings() {
           const newBookingData = [...bookingData];
           newBookingData[index].isRentalCreated = true;
           setBookingData(newBookingData);
+          Axios.put(`http://localhost:8000/bookings/${booking.booking_id}`, {
+            archive: true,
+          });
         })
         .catch((error) => {
           console.log(error);

@@ -54,6 +54,7 @@ function Rooms() {
         room_id: room.room_id,
         booking_id: null,
         hotel_id: hotelId,
+        archive: false,
         payment: paymentMethod,
       })
         .then((response) => {
@@ -79,7 +80,11 @@ function Rooms() {
               backgroundColor:
                 selectedRoomId == room.room_id ? "yellow" : "white",
             }}
-            onClick={() => setSelectedRoomId(room.room_id)}
+            onClick={() =>
+              setSelectedRoomId((prevSelectedRoomId) =>
+                prevSelectedRoomId === room.room_id ? null : room.room_id
+              )
+            }
           >
             <h3>Room ID: {room.room_id}</h3>
             <p>Type of view: {room.type_of_view}</p>

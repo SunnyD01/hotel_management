@@ -133,10 +133,11 @@ export const create_booking = async (
     const hotel_id = req.body.hotel_id;
     const check_in = req.body.check_in;
     const check_out = req.body.check_out;
+    const archive = req.body.archive;
     const booking_time = new Date().toISOString().split("T")[0];
 
     const book = await client.query(
-      `INSERT INTO public.booking VALUES(${booking_id},'${check_in}','${check_out}','${booking_time}',${room_id},${hotel_id},${customer_ssn})`
+      `INSERT INTO public.booking VALUES(${booking_id},'${check_in}','${check_out}','${booking_time}',${room_id},${hotel_id},${archive},${customer_ssn})`
     );
     return res.status(200).json(book.rows);
   } catch (err: any) {
@@ -169,9 +170,10 @@ export const newRental = async (
     const room_id = req.body.room_id;
     const booking_id = req.body.booking_id;
     const hotel_id = req.body.hotel_id;
+    const archive = req.body.archive;
     const payment = req.body.payment;
     const rental = await client.query(
-      `INSERT INTO public.renting (renting_id, checkin_date, checkout_date, employee, customer, room_id, booking_id, hotel_id, payment) VALUES (${renting_id},'${check_in}','${check_out}',${employee},${customer},${room_id},${booking_id},${hotel_id},'${payment}')`
+      `INSERT INTO public.renting (renting_id, checkin_date, checkout_date, employee, customer, room_id, booking_id, hotel_id, archive, payment) VALUES (${renting_id},'${check_in}','${check_out}',${employee},${customer},${room_id},${booking_id},${hotel_id},${archive},'${payment}')`
     );
     return res.status(200).json(rental.rows);
   } catch (err: any) {
@@ -290,7 +292,7 @@ export const getAllRentalsFromHotel = async (
     const rentings = await client.query(
       `SELECT *
        FROM public.renting
-       WHERE hotel_id = $1`,
+       WHERE hotel_id = $1 AND archive = FALSE`,
       [hotelId]
     );
 
@@ -314,12 +316,110 @@ export const getAllBookingsWithoutRentalsFromHotel = async (
       `SELECT booking.*
        FROM public.booking
        LEFT JOIN public.renting ON booking.booking_id = renting.booking_id
-       WHERE booking.hotel_id = $1 AND renting.booking_id IS NULL`,
+       WHERE booking.hotel_id = $1 AND renting.booking_id IS NULL AND booking.archive = FALSE`,
       [hotelId]
     );
 
     // Return the bookings without renting as a JSON response
     res.json(bookingsWithoutRenting.rows);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const updateBookingArchive = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const bookingId = req.params.booking_id;
+    const { archive } = req.body;
+
+    // Update the archive attribute of the booking with the specified ID
+    const result = await client.query(
+      `UPDATE public.booking SET archive = $1 WHERE booking_id = $2 RETURNING *`,
+      [archive, bookingId]
+    );
+
+    // If no rows were affected, return a 404 error
+    if (result.rowCount === 0) {
+      res.status(404).json({ message: "Booking not found" });
+      return;
+    }
+
+    // Return the updated booking as a JSON response
+    res.json(result.rows[0]);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const updateRentingArchive = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const rentingId = req.params.renting_id;
+    const { archive } = req.body;
+
+    // Update the archive attribute of the renting with the specified ID
+    const result = await client.query(
+      `UPDATE public.renting SET archive = $1 WHERE renting_id = $2 RETURNING *`,
+      [archive, rentingId]
+    );
+
+    // If no rows were affected, return a 404 error
+    if (result.rowCount === 0) {
+      res.status(404).json({ message: "Renting not found" });
+      return;
+    }
+
+    // Return the updated renting as a JSON response
+    res.json(result.rows[0]);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const showRentingArchiveHotel = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const hotelId = req.params.hotel_id;
+
+    // Retrieve all archived rentings for the specified hotel_id
+    const result = await client.query(
+      `SELECT * FROM public.renting WHERE hotel_id = $1 AND archive = TRUE`,
+      [hotelId]
+    );
+
+    // Return the archived rentings as a JSON response
+    res.json(result.rows);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const showBookingArchiveHotel = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const hotelId = req.params.hotel_id;
+
+    // Retrieve all archived rentings for the specified hotel_id
+    const result = await client.query(
+      `SELECT * FROM public.booking WHERE hotel_id = $1 AND archive = TRUE`,
+      [hotelId]
+    );
+
+    // Return the archived rentings as a JSON response
+    res.json(result.rows);
   } catch (err: any) {
     console.error(err.message);
     res.status(500).json({ message: "Server error" });

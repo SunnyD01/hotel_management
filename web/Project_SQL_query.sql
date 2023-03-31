@@ -49,6 +49,7 @@ CREATE TABLE booking(
 	time_of_booking TIMESTAMP NOT NULL,
 	room_id INT NOT NULL,
 	hotel_id INT NOT NULL,
+	archive BOOLEAN NOT NULL,
 	customer_ssn INT NOT NULL,
 	CONSTRAINT fk_customer_ssn
 		FOREIGN KEY(customer_ssn)
@@ -61,9 +62,10 @@ CREATE TABLE renting(
 	checkin_date DATE,
 	employee INT NOT NULL,
 	customer INT NOT NULL,
-	room_id INT NOT NULL UNIQUE,
+	room_id INT NOT NULL,
 	booking_id INT,
 	hotel_id INT NOT NULL,
+	archive BOOLEAN NOT NULL,
 	payment VARCHAR(6) NOT NULL,
 	CONSTRAINT fk_booking_id
 		FOREIGN KEY(booking_id)

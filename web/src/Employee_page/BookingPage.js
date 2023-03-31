@@ -48,6 +48,7 @@ function BookingPage() {
               hotel_id: room.hotel_id,
               check_in: checkInDate,
               check_out: checkOutDate,
+              archive: false,
             }
           );
           console.log(response.data);
