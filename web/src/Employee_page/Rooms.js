@@ -32,11 +32,45 @@ function Rooms() {
     navigate(`/bookingPage?room=${roomString}`);
   };
 
+  const handleNewRental = (room) => {
+    const employeeSsn = prompt("Enter employee SSN:");
+    const customerSsn = prompt("Enter customer SSN:");
+    const checkInDate = prompt("Enter check-in date (YYYY-MM-DD):");
+    const checkOutDate = prompt("Enter check-out date (YYYY-MM-DD):");
+    const paymentMethod = prompt("Enter payment method:");
+
+    if (
+      employeeSsn &&
+      customerSsn &&
+      checkInDate &&
+      checkOutDate &&
+      paymentMethod
+    ) {
+      Axios.post(`http://localhost:8000/new/rental`, {
+        check_in: checkInDate,
+        check_out: checkOutDate,
+        employee: employeeSsn,
+        customer: customerSsn,
+        room_id: room.room_id,
+        booking_id: null,
+        hotel_id: hotelId,
+        payment: paymentMethod,
+      })
+        .then((response) => {
+          console.log(response.data);
+          // handle the response
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   return (
     <div>
       <h1>Selected Address: {selectedAddress}</h1>
       <h1>Selected Hotel ID: {hotelId}</h1>
-      <ul>
+      <ul style={{ listStyle: "none", padding: 0 }}>
         {rooms.map((room) => (
           <li
             key={room.room_id}
@@ -54,7 +88,18 @@ function Rooms() {
             <p>Extension: {room.ext ? "Yes" : "No"}</p>
             <p>Active: {room.active ? "Yes" : "No"}</p>
             <p>Price: ${room.price}</p>
-            <button onClick={() => handleBookNowClick(room)}>Book Now</button>
+            <button
+              style={{ marginTop: "10px" }}
+              onClick={() => handleBookNowClick(room)}
+            >
+              Book Now
+            </button>
+            <button
+              onClick={() => handleNewRental(room)}
+              style={{ marginLeft: "100px" }}
+            >
+              Create Rental
+            </button>
           </li>
         ))}
       </ul>
