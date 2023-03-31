@@ -57,8 +57,21 @@ function Archived() {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(`/landing?address=${selectedAddress}`);
+  };
+
   return (
     <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "20px",
+        }}
+      >
+        <button onClick={handleGoBack}>Go Back</button>
+      </div>
       <h1>Selected Address: {selectedAddress}</h1>
       <h1>Selected Hotel ID: {hotelId}</h1>
 

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Bookings() {
   let location = useLocation();
+  let navigate = useNavigate();
 
   const selectedHotelId = new URLSearchParams(location.search).get("hotel_id");
+  const selectedAddress = new URLSearchParams(location.search).get("address");
 
   const [bookingData, setBookingData] = useState([]);
 
@@ -50,8 +52,21 @@ function Bookings() {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(`/landing?address=${selectedAddress}`);
+  };
+
   return (
     <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "20px",
+        }}
+      >
+        <button onClick={handleGoBack}>Go Back</button>
+      </div>
       <h1>Bookings for hotel ID: {selectedHotelId}</h1>
       <table>
         <thead>

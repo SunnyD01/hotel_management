@@ -77,10 +77,13 @@ export const login_employee = async (
 ) => {
   try {
     const emp_ssn = req.body.ssn;
-    const emp_password = req.body.password;
     const sign_in = await client.query(
-      `SELECT * FROM public.employee WHERE fname='${emp_ssn}' and lname='${emp_password}'`
+      "SELECT * FROM public.employee WHERE ssn = $1",
+      [emp_ssn]
     );
+    if (sign_in.rows.length === 0) {
+      return res.status(404).json({ error: "Employee not found" });
+    }
     return res.status(200).json(sign_in.rows);
   } catch (err: any) {
     console.error(err.message);

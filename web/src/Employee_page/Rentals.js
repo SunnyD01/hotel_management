@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Rentals() {
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const selectedAddress = decodeURIComponent(params.get("address"));
   const hotelId = params.get("hotel_id");
@@ -42,8 +43,21 @@ function Rentals() {
     }
   }
 
+  const handleGoBack = () => {
+    navigate(`/landing?address=${selectedAddress}`);
+  };
+
   return (
     <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "20px",
+        }}
+      >
+        <button onClick={handleGoBack}>Go Back</button>
+      </div>
       <h1>Hotel ID: {hotelId}</h1>
       <h1>Address: {selectedAddress}</h1>
       <ul style={{ listStyle: "none", padding: 0 }}>

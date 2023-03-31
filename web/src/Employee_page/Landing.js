@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 function Landing() {
   let navigate = useNavigate();
+  let location = useLocation();
+
+  const revertedAddress = new URLSearchParams(location.search).get("address");
 
   const toggleBooking = () => {
     const selectedHotel = dataArray.find(
@@ -67,7 +70,10 @@ function Landing() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+
+    // Set initial value of selectedAddress to revertedAddress if it exists
+    setSelectedAddress(revertedAddress || "");
+  }, [revertedAddress]);
 
   const [selectedAddress, setSelectedAddress] = useState("");
 

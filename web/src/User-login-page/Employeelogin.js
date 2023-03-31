@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const welcometitle = "Welcome Back Valued Employee";
 
@@ -23,12 +23,38 @@ const Employeelogin = () => {
       navigate("/landing");
     } catch (error) {
       console.log(error.message);
-      setErrorMessage("SSN not registered");
+      if (error.response.status === 404) {
+        setErrorMessage("SSN not registered");
+      } else {
+        setErrorMessage("An error occurred");
+      }
     }
   };
 
   return (
     <div>
+      <div
+        className="header"
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "20px",
+        }}
+      >
+        <Link
+          to="/"
+          className="back-button"
+          style={{
+            backgroundColor: "#333",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            textDecoration: "none",
+          }}
+        >
+          Go back
+        </Link>
+      </div>
       <h1>{welcometitle}</h1>
       <form onSubmit={handleLogin}>
         <label for="SSN">SSN</label>
