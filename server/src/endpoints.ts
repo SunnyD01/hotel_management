@@ -475,3 +475,24 @@ export const getRoomsAvailability = async (
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+export const roomCapacities = async (req: express.Request, res: express.Response) => {
+  try {
+      const hotel_id = req.body.hotel_id;
+      const capacity = await client.query(`CREATE VIEW capacity AS SELECT capacity FROM public.room WHERE hotel_id=${hotel_id}`);
+      res.json(capacity.rows);
+  } catch (err:any) {
+      console.error(err.message);
+  }
+};
+
+export const roomPerArea = async (req: express.Request, res: express.Response) => {
+  try {
+      const city = req.body.city;
+      const capacity = await client.query(`CREATE VIEW room AS SELECT * FROM public.room NATURAL FULL JOIN public.hotel WHERE city=${city}`);
+      res.json(capacity.rows);
+  } catch (err:any) {
+      console.error(err.message);
+  }
+};
