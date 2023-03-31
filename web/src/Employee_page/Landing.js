@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 function Landing() {
   let navigate = useNavigate();
+  let location = useLocation();
+
+  const revertedAddress = new URLSearchParams(location.search).get("address");
 
   const toggleBooking = () => {
     const selectedHotel = dataArray.find(
@@ -29,6 +32,34 @@ function Landing() {
     }
   };
 
+  const toggleRenting = () => {
+    const selectedHotel = dataArray.find(
+      (item) => item.address === selectedAddress
+    );
+    if (selectedHotel) {
+      const { hotel_id, address } = selectedHotel;
+      navigate(
+        `/rentals?hotel_id=${hotel_id}&address=${encodeURIComponent(address)}`
+      );
+    }
+  };
+
+  const toggleArchives = () => {
+    const selectedHotel = dataArray.find(
+      (item) => item.address === selectedAddress
+    );
+    if (selectedHotel) {
+      const { hotel_id, address } = selectedHotel;
+      navigate(
+        `/archived?hotel_id=${hotel_id}&address=${encodeURIComponent(address)}`
+      );
+    }
+  };
+
+  const createCustomerAccount = () => {
+    navigate("/create-customer-account");
+  };
+
   const [dataArray, setDataArray] = useState([]);
 
   useEffect(() => {
@@ -39,7 +70,10 @@ function Landing() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+
+    // Set initial value of selectedAddress to revertedAddress if it exists
+    setSelectedAddress(revertedAddress || "");
+  }, [revertedAddress]);
 
   const [selectedAddress, setSelectedAddress] = useState("");
 
@@ -58,10 +92,26 @@ function Landing() {
         ))}
       </select>
       <h1>You selected: {selectedAddress}</h1>
+      <button
+        style={{ marginright: "100px", marginBottom: "100px" }}
+        onClick={createCustomerAccount}
+      >
+        Create Customer Account
+      </button>
       {selectedAddress && (
         <div>
-          <button onClick={toggleBooking}>Book Now</button>
-          <button onClick={toggleRoom}>View Rooms</button>
+          <button style={{ marginRight: "100px" }} onClick={toggleBooking}>
+            View Bookings
+          </button>
+          <button style={{ marginRight: "100px" }} onClick={toggleRoom}>
+            View Rooms
+          </button>
+          <button style={{ marginRight: "100px" }} onClick={toggleRenting}>
+            View Rentings
+          </button>
+          <button style={{ marginRight: "100px" }} onClick={toggleArchives}>
+            View Archives
+          </button>
         </div>
       )}
     </div>

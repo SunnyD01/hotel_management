@@ -9,8 +9,12 @@ import CustomerPage from "./Customer_page/CustomerPage";
 import Landing from "./Employee_page/Landing";
 import Booking from "./Employee_page/Bookings";
 import Rooms from "./Employee_page/Rooms";
+import BookingPage from "./Employee_page/BookingPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BookingHistory from "./Customer_page/BookingHistory";
+import CreateCustomerAccount from "./Employee_page/CreateCustomerAccount";
+import Rentals from "./Employee_page/Rentals";
+import Archived from "./Employee_page/Archived";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +48,22 @@ const router = createBrowserRouter([
   {
     path: "/rooms",
     element: <Rooms />,
+  },
+  {
+    path: "/bookingPage",
+    element: <BookingPage />,
+  },
+  {
+    path: "/create-customer-account",
+    element: <CreateCustomerAccount />,
+  },
+  {
+    path: "/rentals",
+    element: <Rentals />,
+  },
+  {
+    path: "/archived",
+    element: <Archived />,
   },
 ]);
 
