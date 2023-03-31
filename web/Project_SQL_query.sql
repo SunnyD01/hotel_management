@@ -14,6 +14,7 @@ CREATE TABLE hotel(
 	phone_number VARCHAR(255) NOT NULL UNIQUE,
 	email_address VARCHAR(255) NOT NULL UNIQUE,
 	address VARCHAR(255) NOT NULL UNIQUE,
+	city VARCHAR(10) NOT NULL,
 	number_of_rooms INT,
 	chain_id INT NOT NULL,
 	CONSTRAINT fk_chain_id

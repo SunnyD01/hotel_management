@@ -97,11 +97,17 @@ export const login_customer = async (
   try {
     const cus_ssn = req.body.ssn;
     const sign_in = await client.query(
-      `SELECT * FROM public.customer WHERE ssn='${cus_ssn}'`
+      `SELECT COUNT(*) FROM public.customer WHERE ssn='${cus_ssn}'`
     );
-    return res.status(200).json(sign_in.rows);
+    const count = sign_in.rows[0].count;
+    if (count === "1") {
+      return res.status(200).json({ message: "Login successful" });
+    } else {
+      return res.status(401).json({ message: "Invalid SSN" });
+    }
   } catch (err: any) {
     console.error(err.message);
+    return res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -190,9 +196,9 @@ export const getAllCustomerBookings = async (
   res: express.Response
 ) => {
   try {
-    const ssn = req.body.ssn;
+    const ssn = req.params.customer_ssn;
     const bookings = await client.query(
-      `SELECT * FROM public.customer NATURAL FULL JOIN public.booking WHERE ssn=${ssn}`
+      `SELECT * FROM public.booking WHERE customer_ssn=${ssn}`
     );
     res.json(bookings.rows);
   } catch (err: any) {
@@ -205,9 +211,9 @@ export const getAllCustomerRentals = async (
   res: express.Response
 ) => {
   try {
-    const ssn = req.body.ssn;
+    const ssn = req.params.customer;
     const rentings = await client.query(
-      `SELECT * FROM public.customer NATURAL FULL JOIN public.renting WHERE ssn=${ssn}`
+      `SELECT * FROM public.renting WHERE customer=${ssn}`
     );
     res.json(rentings.rows);
   } catch (err: any) {
@@ -423,6 +429,47 @@ export const showBookingArchiveHotel = async (
 
     // Return the archived rentings as a JSON response
     res.json(result.rows);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const getRoomsAvailability = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const startDate = req.query.startDate;
+    const endDate = req.query.endDate;
+    const roomCapacity = req.query.roomCapacity;
+    const area = req.query.area;
+    const hotelChain = req.query.hotelChain;
+    const hotelCategory = req.query.hotelCategory;
+    const minPrice = req.query.minPrice;
+    const maxPrice = req.query.maxPrice;
+
+    const roomAvailability = await client.query(`
+      SELECT room.*, hotel.chain_id, hotel.rating
+      FROM public.room
+      INNER JOIN public.hotel ON room.hotel_id = hotel.hotel_id
+      WHERE 
+        room.capacity >= ${roomCapacity} AND 
+        hotel.city = '${area}' AND 
+        hotel.chain_id = '${hotelChain}' AND 
+        hotel.rating = '${hotelCategory}' AND
+        room.price >= ${minPrice} AND
+        room.price <= ${maxPrice} AND
+        room.room_id NOT IN (
+          SELECT DISTINCT room_id 
+          FROM public.booking 
+          WHERE 
+            exp_checkin <= '${endDate}' AND 
+            exp_checkout >= '${startDate}'
+        )
+    `);
+
+    res.json(roomAvailability.rows);
   } catch (err: any) {
     console.error(err.message);
     res.status(500).json({ message: "Server error" });

@@ -1,118 +1,95 @@
-import Navbar from "../Navbar";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-const pagetitle = "Booking & Renting History"
-
-
-
+const pagetitle = "Booking & Renting History";
 const BookingHistory = () => {
-    
-    const [bookings, setBookings] = useState([
-        {
-          id: 1,
-          hotelName: 'Hotel A',
-          checkInDate: '2022-04-01',
-          checkOutDate: '2022-04-05',
-          numGuests: 2,
-          customer_ssn: 235689,
-        },
-        {
-          id: 2,
-          hotelName: 'Hotel B',
-          checkInDate: '2022-05-10',
-          checkOutDate: '2022-05-15',
-          numGuests: 3,
-        },
-      ]);
+  const location = useLocation();
+  const ssn = location.state?.ssn;
+  const [bookings, setBookings] = useState([]);
+  const [rentals, setRentals] = useState([]);
 
-      const [rentings, setRentings] = useState([
-        {
-          id: 1,
-          hotelName: 'Hotel A',
-          checkInDate: '2022-06-17',
-          checkOutDate: '2022-08-05',
-          numGuests: 5,
-          customer_ssn: 235689,
-        },
-        {
-          id: 2,
-          hotelName: 'Hotel B',
-          checkInDate: '2022-05-10',
-          checkOutDate: '2022-05-15',
-          numGuests: 3,
-        },
-      ]);
+  useEffect(() => {
+    async function fetchData() {
+      const bookingData = await axios.get(
+        `http://localhost:8000/customer/view/bookings/${ssn}`
+      );
+      setBookings(bookingData.data);
+      const rentalData = await axios.get(
+        `http://localhost:8000/customer/view/rentals/${ssn}`
+      );
+      setRentals(rentalData.data);
+    }
+    fetchData();
+  }, [ssn]);
 
-    useEffect(() => {
-      axios.get("api/booking")
-      .then((response) => setBookings(response.data))
-      .catch((error) => console.error(error));
-    })
-    
-    useEffect(() => {
-      axios.get("api/renting")
-      .then((response) => setRentings(response.data))
-      .catch((error) => console.error(error));
-    })
-    
-    return (
-        <div>
-            <h1>{pagetitle}</h1>
-            <Navbar/>
-            <h1>Booking History</h1>
-                {bookings.length > 0 ? (
-        <table>
-            <thead>
-            <tr>
-                <th>Hotel Name</th>
-                <th>Check-in Date</th>
-                <th>Check-out Date</th>
-                <th>Number of Guests</th>
-            </tr>
-            </thead>
-            <tbody>
+  return (
+    <div>
+      <h1>Booking & Renting History for {ssn}</h1>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <h3>Bookings</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th style={{ padding: "10px" }}>Booking ID</th>
+                  <th style={{ padding: "10px" }}>Check-in Date</th>
+                  <th style={{ padding: "10px" }}>Check-out Date</th>
+                  <th style={{ padding: "10px" }}>Room ID</th>
+                  <th style={{ padding: "10px" }}>Hotel ID</th>
+                </tr>
+              </thead>
+              <tbody>
                 {bookings.map((booking) => (
-                <tr key={booking.id}>
-                    <td>{booking.hotelName}</td>
-                    <td>{booking.checkInDate}</td>
-                    <td>{booking.checkOutDate}</td>
-                    <td>{booking.numGuests}</td>
-                </tr>
+                  <tr key={booking.booking_id}>
+                    <td style={{ padding: "10px" }}>{booking.booking_id}</td>
+                    <td style={{ padding: "10px" }}>
+                      {new Date(booking.exp_checkin).toLocaleDateString()}
+                    </td>
+                    <td style={{ padding: "10px" }}>
+                      {new Date(booking.exp_checkout).toLocaleDateString()}
+                    </td>
+                    <td style={{ padding: "10px" }}>{booking.room_id}</td>
+                    <td style={{ padding: "10px" }}>{booking.hotel_id}</td>
+                  </tr>
                 ))}
-            </tbody>
-        </table>
-      ) : (
-        <p>No bookings found</p>
-      )}
-       <h1>Renting History</h1>
-                {bookings.length > 0 ? (
-        <table>
-            <thead>
-            <tr>
-                <th>Hotel Name</th>
-                <th>Check-in Date</th>
-                <th>Check-out Date</th>
-                <th>Number of Guests</th>
-            </tr>
-            </thead>
-            <tbody>
-                {rentings.map((renting) => (
-                <tr key={renting.id}>
-                    <td>{renting.hotelName}</td>
-                    <td>{renting.checkInDate}</td>
-                    <td>{renting.checkOutDate}</td>
-                    <td>{renting.numGuests}</td>
+              </tbody>
+            </table>
+          </div>
+          <div className="col-md-6">
+            <h3>Rentals</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th style={{ padding: "10px" }}>Renting ID</th>
+                  <th style={{ padding: "10px" }}>Check-in Date</th>
+                  <th style={{ padding: "10px" }}>Check-out Date</th>
+                  <th style={{ padding: "10px" }}>Room ID</th>
+                  <th style={{ padding: "10px" }}>Hotel ID</th>
                 </tr>
+              </thead>
+              <tbody>
+                {rentals.map((rental) => (
+                  <tr key={rental.renting_id}>
+                    <td style={{ padding: "10px" }}>{rental.renting_id}</td>
+                    <td style={{ padding: "10px" }}>
+                      {new Date(rental.checkin_date).toLocaleDateString()}
+                    </td>
+                    <td style={{ padding: "10px" }}>
+                      {new Date(rental.checkout_date).toLocaleDateString()}
+                    </td>
+                    <td style={{ padding: "10px" }}>{rental.room_id}</td>
+                    <td style={{ padding: "10px" }}>{rental.hotel_id}</td>
+                  </tr>
                 ))}
-            </tbody>
-        </table>
-      ) : (
-        <p>No rentings found</p>
-      )}
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
+    </div>
+  );
+};
 
-    );
-}
- 
 export default BookingHistory;
