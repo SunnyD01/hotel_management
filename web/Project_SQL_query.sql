@@ -7,7 +7,7 @@ CREATE TABLE hotel_chain(
 );
 
 CREATE TABLE hotel(
-	hotel_id SERIAL PRIMARY KEY,
+	hotel_id INT PRIMARY KEY,
 	manager_id INT,
 	employees INT,
 	rating INT,
@@ -43,11 +43,12 @@ CREATE TABLE customer(
 );
 
 CREATE TABLE booking(
-	booking_id SERIAL PRIMARY KEY,
+	booking_id INT PRIMARY KEY,
 	exp_checkin DATE NOT NULL,
 	exp_checkout DATE,
 	time_of_booking TIMESTAMP NOT NULL,
 	room_id INT NOT NULL,
+	hotel_id INT NOT NULL,
 	customer_ssn INT NOT NULL,
 	CONSTRAINT fk_customer_ssn
 		FOREIGN KEY(customer_ssn)
@@ -55,20 +56,22 @@ CREATE TABLE booking(
 );
 
 CREATE TABLE renting(
-	renting_id SERIAL PRIMARY KEY,
+	renting_id INT PRIMARY KEY,
 	checkout_date DATE,
 	checkin_date DATE,
 	employee INT NOT NULL,
 	customer INT NOT NULL,
 	room_id INT NOT NULL UNIQUE,
-	booking_id INT NOT NULL,
+	booking_id INT,
+	hotel_id INT NOT NULL,
+	payment VARCHAR(6) NOT NULL,
 	CONSTRAINT fk_booking_id
 		FOREIGN KEY(booking_id)
 			REFERENCES booking(booking_id)
 );
 
 CREATE TABLE room(
-	room_id SERIAL PRIMARY KEY,
+	room_id INT PRIMARY KEY,
 	renting_history TEXT,
 	type_of_view VARCHAR(50) NOT NULL,
 	capacity INT NOT NULL,

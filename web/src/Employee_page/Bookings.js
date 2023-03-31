@@ -10,26 +10,41 @@ function Bookings() {
   const [bookingData, setBookingData] = useState([]);
 
   useEffect(() => {
-    // First fetch all the room ids for the selected hotel id
-    Axios.get(`http://localhost:8000/rooms/hotel?hotel_id=${selectedHotelId}`)
+    Axios.get(`http://localhost:8000/bookings/${selectedHotelId}`)
       .then((response) => {
-        const roomIds = response.data.map((room) => room.room_id);
-        // Then fetch only the bookings for those room ids
-        Axios.get(`http://localhost:8000/getAllBookings`)
-          .then((response) => {
-            const filteredBookings = response.data.filter((booking) =>
-              roomIds.includes(booking.room_id)
-            );
-            setBookingData(filteredBookings);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        setBookingData(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [selectedHotelId]);
+
+  const handleNewRental = (booking, index) => {
+    const employeeSsn = prompt("Enter employee SSN:");
+    const paymentMethod = prompt("Enter payment method:");
+
+    if (employeeSsn && paymentMethod) {
+      Axios.post(`http://localhost:8000/new/rental`, {
+        check_in: booking.exp_checkin,
+        check_out: booking.exp_checkout,
+        employee: employeeSsn,
+        customer: booking.customer_ssn,
+        room_id: booking.room_id,
+        booking_id: booking.booking_id,
+        hotel_id: booking.hotel_id,
+        payment: paymentMethod,
+      })
+        .then((response) => {
+          console.log(response.data);
+          const newBookingData = [...bookingData];
+          newBookingData[index].isRentalCreated = true;
+          setBookingData(newBookingData);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   return (
     <div>
@@ -45,7 +60,7 @@ function Bookings() {
           </tr>
         </thead>
         <tbody>
-          {bookingData.map((booking) => (
+          {bookingData.map((booking, index) => (
             <tr key={booking.booking_id}>
               <td style={{ padding: "10px" }}>{booking.booking_id}</td>
               <td style={{ padding: "10px" }}>{booking.room_id}</td>
@@ -55,6 +70,15 @@ function Bookings() {
               </td>
               <td style={{ padding: "10px" }}>
                 {new Date(booking.exp_checkout).toLocaleDateString()}
+              </td>
+              <td style={{ padding: "10px" }}>
+                {booking.isRentalCreated ? (
+                  <span>Rental is Created</span>
+                ) : (
+                  <button onClick={() => handleNewRental(booking, index)}>
+                    Create Rental
+                  </button>
+                )}
               </td>
             </tr>
           ))}

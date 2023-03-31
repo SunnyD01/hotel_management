@@ -130,12 +130,13 @@ export const create_booking = async (
     const booking_id = Math.floor(Math.random() * (99999 - 10000) + 10000);
     const customer_ssn = req.body.ssn;
     const room_id = req.body.room_id;
+    const hotel_id = req.body.hotel_id;
     const check_in = req.body.check_in;
     const check_out = req.body.check_out;
     const booking_time = new Date().toISOString().split("T")[0];
 
     const book = await client.query(
-      `INSERT INTO public.booking VALUES(${booking_id},'${check_in}','${check_out}','${booking_time}',${room_id},${customer_ssn})`
+      `INSERT INTO public.booking VALUES(${booking_id},'${check_in}','${check_out}','${booking_time}',${room_id},${hotel_id},${customer_ssn})`
     );
     return res.status(200).json(book.rows);
   } catch (err: any) {
@@ -166,8 +167,11 @@ export const newRental = async (
     const employee = req.body.employee;
     const customer = req.body.customer;
     const room_id = req.body.room_id;
+    const booking_id = req.body.booking_id;
+    const hotel_id = req.body.hotel_id;
+    const payment = req.body.payment;
     const rental = await client.query(
-      `INSERT INTO public.renting (renting_id, checkin_date, checkout_date, employee, customer, room_id) VALUES (${renting_id},'${check_in}','${check_out}',${employee},${customer},${room_id})`
+      `INSERT INTO public.renting (renting_id, checkin_date, checkout_date, employee, customer, room_id, booking_id, hotel_id, payment) VALUES (${renting_id},'${check_in}','${check_out}',${employee},${customer},${room_id},${booking_id},${hotel_id},'${payment}')`
     );
     return res.status(200).json(rental.rows);
   } catch (err: any) {
@@ -272,5 +276,52 @@ export const checkCustomer = async (
     return res.status(200).json(sign_in.rows);
   } catch (err: any) {
     console.error(err.message);
+  }
+};
+
+export const getAllRentalsFromHotel = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const hotelId = req.params.hotelId;
+
+    // Query the database to fetch all the rentings associated with the hotel
+    const rentings = await client.query(
+      `SELECT *
+       FROM public.renting
+       WHERE hotel_id = $1`,
+      [hotelId]
+    );
+
+    // Return the rentings as a JSON response
+    res.json(rentings.rows);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const getAllBookingsWithoutRentalsFromHotel = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const hotelId = req.params.hotelId;
+
+    // Query the database to fetch all the bookings associated with the hotel that do not have a corresponding renting
+    const bookingsWithoutRenting = await client.query(
+      `SELECT booking.*
+       FROM public.booking
+       LEFT JOIN public.renting ON booking.booking_id = renting.booking_id
+       WHERE booking.hotel_id = $1 AND renting.booking_id IS NULL`,
+      [hotelId]
+    );
+
+    // Return the bookings without renting as a JSON response
+    res.json(bookingsWithoutRenting.rows);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
   }
 };

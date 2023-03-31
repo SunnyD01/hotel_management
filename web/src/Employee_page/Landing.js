@@ -29,6 +29,18 @@ function Landing() {
     }
   };
 
+  const toggleRenting = () => {
+    const selectedHotel = dataArray.find(
+      (item) => item.address === selectedAddress
+    );
+    if (selectedHotel) {
+      const { hotel_id, address } = selectedHotel;
+      navigate(
+        `/rentals?hotel_id=${hotel_id}&address=${encodeURIComponent(address)}`
+      );
+    }
+  };
+
   const createCustomerAccount = () => {
     navigate("/create-customer-account");
   };
@@ -70,11 +82,14 @@ function Landing() {
       </button>
       {selectedAddress && (
         <div>
-          <button style={{ marginRight: "500px" }} onClick={toggleBooking}>
+          <button style={{ marginRight: "100px" }} onClick={toggleBooking}>
             View Bookings
           </button>
           <button style={{ marginRight: "100px" }} onClick={toggleRoom}>
             View Rooms
+          </button>
+          <button style={{ marginRight: "100px" }} onClick={toggleRenting}>
+            View Rentings
           </button>
         </div>
       )}

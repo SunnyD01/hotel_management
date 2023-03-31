@@ -45,6 +45,7 @@ function BookingPage() {
             {
               ssn,
               room_id: room.room_id,
+              hotel_id: room.hotel_id,
               check_in: checkInDate,
               check_out: checkOutDate,
             }

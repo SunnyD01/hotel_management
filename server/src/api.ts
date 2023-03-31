@@ -14,6 +14,8 @@ import {
   getRoomHistory,
   getAllRoomsFromhotel,
   checkCustomer,
+  getAllRentalsFromHotel,
+  getAllBookingsWithoutRentalsFromHotel,
 } from "./endpoints";
 
 const apiRouter = express.Router();
@@ -41,6 +43,8 @@ apiRouter.get("/customer/view/rentals", getAllCustomerRentals);
 apiRouter.get("/history/room", getRoomHistory);
 
 apiRouter.post("/checkCustomer", checkCustomer);
+apiRouter.get("/rentings/hotels/:hotelId", getAllRentalsFromHotel);
+apiRouter.get("/bookings/:hotelId", getAllBookingsWithoutRentalsFromHotel);
 
 const yesterday = new Date(new Date().getDate());
 
